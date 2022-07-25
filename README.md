@@ -1,3 +1,3 @@
-# library-site-project-created-with-laravel
+# library-management-site-project-created-with-laravel
 
 library-site-project-created-with-laravel
