@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" href="/images/icons/@section('icon') {{ env('APP_ICON') }} @show">
+    <link rel="icon" href="/images/icons/@section('icon'){{ env('APP_ICON') }} @show">
     <title>@section('title') {{ env('APP_NAME') }} @show</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />

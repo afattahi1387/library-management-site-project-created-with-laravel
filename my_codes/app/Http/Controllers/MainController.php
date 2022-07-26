@@ -13,4 +13,8 @@ class MainController extends Controller
         $books = Book::orderBy('id', 'DESC')->paginate(5);
         return view('main_views.home', ['categories' => $categories, 'books' => $books]);
     }
+
+    public function single_book(Book $book) {
+        return view('main_views.single_book', ['book' => $book]);
+    }
 }

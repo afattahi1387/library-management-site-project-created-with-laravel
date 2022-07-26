@@ -9,13 +9,13 @@
                 <!-- Blog post-->
                 @foreach($books as $book)
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{{ asset('/images/books_images/' . $book->image) }}" alt="تصویر به نمایش در نیامد." /></a>
+                        <a href="{{ route('single.book', ['book' => $book->id]) }}"><img class="card-img-top" src="{{ asset('/images/books_images/' . $book->image) }}" alt="تصویر به نمایش در نیامد." /></a>
                         <div class="card-body">
                             <div class="small text-muted">دسته بندی: {{ $book->category->category_name }}</div><br>
                             <div class="small text-muted">انتشارات: {{ $book->publisher->publisher_name }}</div><br>
                             <h2 class="card-title h4">{{ $book->name }}</h2>
                             <p class="card-text">{{ $book->short_description }}</p>
-                            <a class="btn btn-primary" href="#!">مشاهده اطلاعات کتاب →</a>
+                            <a class="btn btn-primary" href="{{ route('single.book', ['book' => $book->id]) }}">مشاهده اطلاعات کتاب →</a>
                         </div>
                     </div>
                 @endforeach
