@@ -17,4 +17,8 @@ class MainController extends Controller
     public function single_book(Book $book) {
         return view('main_views.single_book', ['book' => $book]);
     }
+
+    public function login_page() {
+        return view('authentication.login');
+    }
 }

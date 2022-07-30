@@ -14,3 +14,5 @@
 Route::get('/', 'MainController@home')->name('home');
 
 Route::get('/single-book/{book}', 'MainController@single_book')->name('single.book');
+
+Route::get('/login', 'MainController@login_page')->name('login.page');
