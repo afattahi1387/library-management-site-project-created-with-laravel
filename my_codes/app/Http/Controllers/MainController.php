@@ -19,6 +19,10 @@ class MainController extends Controller
     }
 
     public function login_page() {
-        return view('authentication.login');
+        if(auth()->check()) {
+            return redirect()->route('dashboard');
+        }
+        
+        return view('auth.login');
     }
 }

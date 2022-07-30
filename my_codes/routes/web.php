@@ -15,4 +15,10 @@ Route::get('/', 'MainController@home')->name('home');
 
 Route::get('/single-book/{book}', 'MainController@single_book')->name('single.book');
 
+Auth::routes();
+
 Route::get('/login', 'MainController@login_page')->name('login.page');
+
+Route::get('/dashboard', function() {
+    return 'dashboard';
+})->name('dashboard');
