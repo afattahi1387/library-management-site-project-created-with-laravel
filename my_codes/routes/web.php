@@ -19,6 +19,4 @@ Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login.page');
 
-Route::get('/dashboard', function() {
-    return 'dashboard';
-})->name('dashboard');
+Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
