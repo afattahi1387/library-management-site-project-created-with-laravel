@@ -41,7 +41,7 @@
                                 @else
                                     <form action="{{ route('category.add') }}" method="POST">
                                         {{ csrf_field() }}
-                                        <input type="text" name="category_name" placeholder="نام دسته بندی" value="{{ old('category_name') }}" class="form-control @if($errors->has('category_name')) is-invalid @endif">
+                                        <input type="text" name="category_name" placeholder="نام دسته بندی" class="form-control @if($errors->has('category_name')) is-invalid @endif">
                                         @if($errors->has('category_name'))
                                             <span class="text-danger">{{ $errors->first('category_name') }}</span><br>
                                         @endif

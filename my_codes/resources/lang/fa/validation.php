@@ -12,7 +12,8 @@ return [
 
     'attributes' => [
         'email' => 'ایمیل',
-        'category_name' => 'نام دسته بندی'
+        'category_name' => 'نام دسته بندی',
+        'publisher_name' => 'نام انتشارات'
     ],
 
 ];

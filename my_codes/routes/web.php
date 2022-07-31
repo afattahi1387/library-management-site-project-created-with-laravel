@@ -25,4 +25,10 @@ Route::prefix('panel')->group(function() {
     Route::post('/add-category', 'DashboardController@add_category')->name('category.add');
 
     Route::put('/edit-category/{category}', 'DashboardController@update_category')->name('category.update');
+
+    Route::get('/publishers', 'DashboardController@publishers_page')->name('publishers.page');
+
+    Route::post('/add-publisher', 'DashboardController@add_publisher')->name('publisher.add');
+
+    Route::put('/edit-publisher/{publisher}', 'DashboardController@update_publisher')->name('publisher.update');
 });

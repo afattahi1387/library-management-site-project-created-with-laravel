@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\AddCategoryRequest;
+use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
+use App\Http\Requests\EditPublisherRequest;
+use App\Publisher;
 
 class DashboardController extends Controller
 {
@@ -36,5 +39,30 @@ class DashboardController extends Controller
         ]);
 
         return redirect()->route('dashboard');
+    }
+
+    public function publishers_page() {
+        $publishers = Publisher::orderBy('id', 'DESC')->get();
+        if(isset($_GET['edit-publisher']) && !empty($_GET['edit-publisher'])) {
+            $publisher_for_edit = Publisher::find($_GET['edit-publisher']);
+            return view('dashboard.publishers', ['publishers' => $publishers, 'publisher_for_edit' => $publisher_for_edit]);
+        }
+        return view('dashboard.publishers', ['publishers' => $publishers]);
+    }
+
+    public function add_publisher(AddPublisherRequest $request) {
+        Publisher::create([
+            'publisher_name' => $request['publisher_name']
+        ]);
+
+        return redirect()->route('publishers.page');
+    }
+
+    public function update_publisher(EditPublisherRequest $request, Publisher $publisher) {
+        $publisher->update([
+            'publisher_name' => $request['publisher_name']
+        ]);
+
+        return redirect()->route('publishers.page');
     }
 }
