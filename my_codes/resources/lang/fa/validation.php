@@ -11,7 +11,8 @@ return [
     ],
 
     'attributes' => [
-        'email' => 'ایمیل'
+        'email' => 'ایمیل',
+        'category_name' => 'نام دسته بندی'
     ],
 
 ];

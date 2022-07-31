@@ -20,3 +20,9 @@ Auth::routes();
 Route::get('/login', 'MainController@login_page')->name('login.page');
 
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+
+Route::prefix('panel')->group(function() {
+    Route::post('/add-category', 'DashboardController@add_category')->name('category.add');
+
+    Route::put('/edit-category/{category}', 'DashboardController@update_category')->name('category.update');
+});
