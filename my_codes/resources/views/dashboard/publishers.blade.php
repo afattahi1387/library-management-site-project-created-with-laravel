@@ -1,10 +1,10 @@
 @extends('includes.dashboard_html_structure')
-@section('title', 'انتشارات')
+@section('title', 'انتشارات ها')
 @section('content')
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">انتشارات</h1><br>
+                <h1 class="mt-4">انتشارات ها</h1><br>
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="card mb-4">
@@ -57,7 +57,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        انتشارات
+                        انتشارات ها
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
