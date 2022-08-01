@@ -10,6 +10,10 @@
                 <a class="nav-link" href="{{ route('publishers.page') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-newspaper" aria-hidden="true"></i></div>
                     انتشارات
+		        </a>
+                <a class="nav-link" href="#">
+                    <div class="sb-nav-link-icon"><i class="fa fa-book"></i></div>
+                    کتاب ها
                 </a>
             </div>
         </div>
