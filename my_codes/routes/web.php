@@ -31,4 +31,8 @@ Route::prefix('panel')->group(function() {
     Route::post('/add-publisher', 'DashboardController@add_publisher')->name('publisher.add');
 
     Route::put('/edit-publisher/{publisher}', 'DashboardController@update_publisher')->name('publisher.update');
+
+    Route::get('/books', 'DashboardController@books_page')->name('books.page');
+
+    Route::delete('/delete-book/{book}', 'DashboardController@delete_book')->name('book.delete');
 });

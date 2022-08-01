@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\AddCategoryRequest;
@@ -64,5 +65,15 @@ class DashboardController extends Controller
         ]);
 
         return redirect()->route('publishers.page');
+    }
+
+    public function books_page() {
+        $books = Book::orderBy('id', 'DESC')->get();
+        return view('dashboard.books_page', ['books' => $books]);
+    }
+
+    public function delete_book(Book $book) {
+        $book->delete();
+        return redirect()->route('books.page');
     }
 }
