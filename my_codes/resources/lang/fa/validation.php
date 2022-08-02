@@ -16,7 +16,8 @@ return [
         'publisher_name' => 'نام انتشارات',
         'name' => 'نام',
         'short_description' => 'توضیحات کوتاه',
-        'long_description' => 'توضیحات بلند'
+        'long_description' => 'توضیحات بلند',
+        'image' => 'تصویر'
     ],
 
 ];

@@ -39,4 +39,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/add-book', 'DashboardController@add_book_page')->name('book.add.page');
 
     Route::post('/create-book', 'DashboardController@create_book')->name('book.create');
+
+    Route::get('/add-image/{book}', 'DashboardController@add_image_page')->name('book.add.image');
+
+    Route::post('/upload-image/{book}', 'DashboardController@upload_image')->name('book.image.upload');
 });

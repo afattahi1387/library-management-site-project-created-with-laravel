@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\AddCategoryRequest;
+use App\Http\Requests\AddImageRequest;
 use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
@@ -94,6 +95,25 @@ class DashboardController extends Controller
             'publisher_id' => $request['publisher_id']
         ]);
 
-        dd($new_book->id);
+        return redirect()->route('book.add.image', ['book' => $new_book->id]);
+    }
+
+    public function add_image_page(Book $book) {
+        return view('dashboard.upload_image_for_new_book', ['book' => $book]);
+    }
+
+    public function upload_image(AddImageRequest $request, Book $book) {
+        $imagePath = $request->image->path();
+        $imageName = $request->image->getClientOriginalName();
+        $imageNewName = $book->id . '_' . $imageName;
+        move_uploaded_file($imagePath, 'uploads/books_images/' . $imageName);
+        rename('uploads/books_images/' . $imageName, 'uploads/books_images/' . $imageNewName);
+        copy('uploads/books_images/' . $imageNewName, 'images/books_images/' . $imageNewName);
+        unlink('uploads/books_images/' . $imageNewName);
+        $book->update([
+            'image' => $imageNewName
+        ]);
+
+        return redirect()->route('single.book', ['book' => $book->id]);
     }
 }
