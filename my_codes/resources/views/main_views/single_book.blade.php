@@ -21,9 +21,9 @@
                         <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('images/books_images/' . $book->image) }}" alt="تصویری برای نمایش وجود ندارد." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
-                            {{ $book->short_description }}
+                            {!! $book->short_description !!}
                             <hr>
-                            {{ $book->long_description }}
+                            {!! $book->long_description !!}
                         </section>
                     </article>
                     <!-- Comments section-->
