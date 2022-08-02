@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
@@ -75,5 +76,24 @@ class DashboardController extends Controller
     public function delete_book(Book $book) {
         $book->delete();
         return redirect()->route('books.page');
+    }
+
+    public function add_book_page() {
+        $categories = Category::orderBy('id', 'DESC')->get();
+        $publishers = Publisher::orderBy('id', 'DESC')->get();
+        return view('dashboard.add_book', ['categories' => $categories, 'publishers' => $publishers]);
+    }
+
+    public function create_book(AddBookRequest $request) {
+        $new_book = Book::create([
+            'name' => $request['name'],
+            'image' => '',
+            'short_description' => $request['short_description'],
+            'long_description' => $request['long_description'],
+            'category_id' => $request['category_id'],
+            'publisher_id' => $request['publisher_id']
+        ]);
+
+        dd($new_book->id);
     }
 }

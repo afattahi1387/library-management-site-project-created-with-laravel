@@ -35,4 +35,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/books', 'DashboardController@books_page')->name('books.page');
 
     Route::delete('/delete-book/{book}', 'DashboardController@delete_book')->name('book.delete');
+
+    Route::get('/add-book', 'DashboardController@add_book_page')->name('book.add.page');
+
+    Route::post('/create-book', 'DashboardController@create_book')->name('book.create');
 });
