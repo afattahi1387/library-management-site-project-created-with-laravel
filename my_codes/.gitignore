@@ -11,3 +11,4 @@ npm-debug.log
 yarn-error.log
 .env
 /public/images/books_images/*.*
+/public/uploads/books_images/*.*
