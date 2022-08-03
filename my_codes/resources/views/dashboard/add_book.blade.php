@@ -14,17 +14,17 @@
                     <div class="card-body" style="direction: rtl;">
                         <form action="{{ route('book.create') }}" method="POST">
                             {{ csrf_field() }}
-                            <input type="text" name="name" placeholder="نام کتاب" class="form-control @if($errors->has('name')) is-invalid @endif">
+                            <input type="text" name="name" placeholder="نام کتاب" value="{{ old('name') }}" class="form-control @if($errors->has('name')) is-invalid @endif">
                             @if($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span><br>
                             @endif
                             <br>
-                            <textarea name="short_description" id="short_description" placeholder="توضیحات کوتاه" class="form-control" rows="15"></textarea>
+                            <textarea name="short_description" id="short_description" placeholder="توضیحات کوتاه" class="form-control" rows="15">{{ old('short_description') }}</textarea>
                             @if($errors->has('short_description'))
                                 <span class="text-danger">{{ $errors->first('short_description') }}</span><br>
                             @endif
                             <br>
-                            <textarea name="long_description" id="long_description" placeholder="توضیحات بلند" class="form-control" rows="15"></textarea>
+                            <textarea name="long_description" id="long_description" placeholder="توضیحات بلند" class="form-control" rows="15">{{ old('long_description') }}</textarea>
                             @if($errors->has('long_description'))
                                 <span class="text-danger">{{ $errors->first('long_description') }}</span><br>
                             @endif
