@@ -9,6 +9,7 @@ use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddImageRequest;
 use App\Http\Requests\AddPublisherRequest;
+use App\Http\Requests\EditBookRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
 use App\Publisher;
@@ -112,6 +113,43 @@ class DashboardController extends Controller
         unlink('uploads/books_images/' . $imageNewName);
         $book->update([
             'image' => $imageNewName
+        ]);
+
+        return redirect()->route('single.book', ['book' => $book->id]);
+    }
+
+    public function edit_book(Book $book) {
+        $categories = Category::orderBy('id', 'DESC')->get();
+        $publishers = Publisher::orderBy('id', 'DESC')->get();
+        return view('dashboard.edit_book', ['book' => $book, 'categories' => $categories, 'publishers' => $publishers]);
+    }
+
+    public function update_book(EditBookRequest $request, Book $book) {
+        $name = $request->name;
+        $short_description = $request->short_description;
+        $long_description = $request->long_description;
+        $category_id = $request->category_id;
+        $publisher_id = $request->publisher_id;
+        if(!empty($request->image)) {
+            $imagePath = $request->image->path();
+            $imageFileName = $request->image->getClientOriginalName();
+            $image = $book->id . '_' . $imageFileName;
+            move_uploaded_file($imagePath, 'uploads/books_images/' . $imageFileName);
+            rename('uploads/books_images/' . $imageFileName, 'uploads/books_images/' . $image);
+            unlink('images/books_images/' . $book->image);
+            copy('uploads/books_images/' . $image, 'images/books_images/' . $image);
+            unlink('uploads/books_images/' . $image);
+        } else {
+            $image = $book->image;
+        }
+
+        $book->update([
+            'name' => $name,
+            'image' => $image,
+            'short_description' => $short_description,
+            'long_description' => $long_description,
+            'category_id' => $category_id,
+            'publisher_id' => $publisher_id
         ]);
 
         return redirect()->route('single.book', ['book' => $book->id]);
