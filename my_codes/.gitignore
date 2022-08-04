@@ -12,3 +12,4 @@ yarn-error.log
 .env
 /public/images/books_images/*.*
 /public/uploads/books_images/*.*
+/public/images/trash_images/*.*
