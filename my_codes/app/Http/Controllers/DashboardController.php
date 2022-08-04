@@ -154,4 +154,9 @@ class DashboardController extends Controller
 
         return redirect()->route('single.book', ['book' => $book->id]);
     }
+
+    public function trash() {
+        $books = Book::orderBy('deleted_at', 'DESC')->onlyTrashed()->get();
+        return view('dashboard.trash', ['books' => $books]);
+    }
 }

@@ -47,4 +47,6 @@ Route::prefix('panel')->group(function() {
     Route::get('/edit-book/{book}', 'DashboardController@edit_book')->name('book.edit');
 
     Route::put('/update-book/{book}', 'DashboardController@update_book')->name('book.update');
+
+    Route::get('/trash', 'DashboardController@trash')->name('trash');
 });
