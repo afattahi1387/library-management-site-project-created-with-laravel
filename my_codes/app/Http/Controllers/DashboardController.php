@@ -75,11 +75,6 @@ class DashboardController extends Controller
         return view('dashboard.books_page', ['books' => $books]);
     }
 
-    public function delete_book(Book $book) {
-        $book->delete();
-        return redirect()->route('books.page');
-    }
-
     public function add_book_page() {
         $categories = Category::orderBy('id', 'DESC')->get();
         $publishers = Publisher::orderBy('id', 'DESC')->get();
@@ -158,5 +153,39 @@ class DashboardController extends Controller
     public function trash() {
         $books = Book::orderBy('deleted_at', 'DESC')->onlyTrashed()->get();
         return view('dashboard.trash', ['books' => $books]);
+    }
+
+    public function move_to_trash(Book $book) {
+        copy('images/books_images/' . $book->image, 'images/trash_images/' . $book->image);
+        unlink('images/books_images/' . $book->image);
+        $book->delete();
+        return redirect()->route('trash');
+    }
+
+    public function recovery($book) {
+        $book = Book::onlyTrashed()->find($book);
+        copy('images/trash_images/' . $book->image, 'images/books_images/' . $book->image);
+        unlink('images/trash_images/' . $book->image);
+        $book->restore();
+        return redirect()->route('books.page');
+    }
+
+    public function delete_book($book) {
+        $book_information = Book::find($book);
+        if(empty($book_information)) {
+            $book_information = Book::onlyTrashed()->find($book);
+        }
+        $image = $book_information->image;
+        if(empty($book_information->deleted_at)) {
+            $image_address = 'images/books_images/' . $image;
+            $route = 'books.page';
+        } else {
+            $image_address = 'images/trash_images/' . $image;
+            $route = 'trash';
+        }
+
+        unlink($image_address);
+        $book_information->forceDelete();
+        return redirect()->route($route);
     }
 }

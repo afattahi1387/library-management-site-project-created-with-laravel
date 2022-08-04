@@ -33,8 +33,14 @@
                                         <img src="{{ asset('images/trash_images/' . $book->image) }}" alt="تصویری برای نمایش وجود ندارد." style="width: 200px; height: 50px; border-radius: 5px;">
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-success">بازیابی</a>
-                                        <button class="btn btn-danger">حذف کامل</button>
+                                        <div class="d-flex">
+                                            <a href="{{ route('trash.books.recovery', ['book' => $book->id]) }}" style="margin-right: 2px;" class="btn btn-success">بازیابی</a>
+                                            <form action="{{ route('book.delete', ['book' => $book->id]) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="_method" value="delete">
+                                                <button onclick="if(confirm('آیا از حذف کامل این کتاب مطمئـن هستید؟')){return true;}else{return false;}" class="btn btn-danger">حذف کامل</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 @endforeach
                             </tbody>

@@ -49,4 +49,8 @@ Route::prefix('panel')->group(function() {
     Route::put('/update-book/{book}', 'DashboardController@update_book')->name('book.update');
 
     Route::get('/trash', 'DashboardController@trash')->name('trash');
+
+    Route::delete('/move-to-trash/{book}', 'DashboardController@move_to_trash')->name('move.to.trash');
+
+    Route::get('/recovery/{book}', 'DashboardController@recovery')->name('trash.books.recovery');
 });
