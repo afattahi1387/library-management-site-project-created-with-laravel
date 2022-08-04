@@ -23,6 +23,13 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-trash"></i></div>
                     سطل زباله
                 </a>
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
+                    <div class="sb-nav-link-icon"><i class="fa fa-sign-out"></i></div>
+                    خروج
+                </a>
+                <form action="{{ route('logout') }}" method="POST" id="logout_form">
+                    {{ csrf_field() }}
+                </form>
             </div>
         </div>
     </nav>
