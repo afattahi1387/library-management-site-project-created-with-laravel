@@ -19,6 +19,10 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-book"></i></div>
                     کتاب ها
                 </a>
+                <a class="nav-link" href="{{ route('trash') }}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-trash"></i></div>
+                    سطل زباله
+                </a>
             </div>
         </div>
     </nav>
