@@ -9,7 +9,7 @@
                 </a>
                 <a class="nav-link" href="{{ route('publishers.page') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-newspaper" aria-hidden="true"></i></div>
-                    انتشارات
+                    انتشارات ها
 		        </a>
                 <a class="nav-link" href="{{ route('book.add.page') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
