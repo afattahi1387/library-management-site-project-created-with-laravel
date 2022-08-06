@@ -53,4 +53,8 @@ Route::prefix('panel')->group(function() {
     Route::delete('/move-to-trash/{book}', 'DashboardController@move_to_trash')->name('move.to.trash');
 
     Route::get('/recovery/{book}', 'DashboardController@recovery')->name('trash.books.recovery');
+
+    Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('category.delete');
+
+    Route::delete('/delete-publisher/{publisher}', 'DashboardController@delete_publisher')->name('publisher.delete');
 });
