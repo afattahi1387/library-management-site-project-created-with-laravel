@@ -188,4 +188,22 @@ class DashboardController extends Controller
         $book_information->forceDelete();
         return redirect()->route($route);
     }
+
+    public function delete_category(Category $category) {
+        if($category->books->count() >= 1) {
+            abort(404);
+        }
+
+        $category->delete();
+        return redirect()->route('dashboard');
+    }
+
+    public function delete_publisher(Publisher $publisher) {
+        if($publisher->books->count() >= 1) {
+            abort(404);
+        }
+
+        $publisher->delete();
+        return redirect()->route('publishers.page');
+    }
 }
