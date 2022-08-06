@@ -14,7 +14,12 @@ class MainController extends Controller
         return view('main_views.home', ['categories' => $categories, 'books' => $books]);
     }
 
-    public function single_book(Book $book) {
+    public function single_book($book) {
+        $book = Book::find($book);
+        if(empty($book)) {
+            abort(404);
+        }
+
         return view('main_views.single_book', ['book' => $book]);
     }
 
