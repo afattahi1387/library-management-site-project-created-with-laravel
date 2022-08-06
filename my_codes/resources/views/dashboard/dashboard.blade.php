@@ -74,8 +74,16 @@
                                         <td>@php echo ++$categoriesCounter; @endphp</td>
                                         <td>{{ $category->category_name }}</td>
                                         <td>
-                                            <a href="{{ route('dashboard') }}?edit-category={{ $category->id }}" style="color: white;" class="btn btn-warning">ویرایش</a>
-                                            {{-- <button class="btn btn-danger">حذف</button> --}}
+                                            <div class="d-flex">
+                                                <a href="{{ route('dashboard') }}?edit-category={{ $category->id }}" style="color: white; margin-right: 2px;" class="btn btn-warning">ویرایش</a>
+                                                @if($category->books->count() < 1)
+                                                    <form action="{{ route('category.delete', ['category' => $category->id]) }}" method="POST" id="delete_category_form">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        <button onclick="if(confirm('آیا از حذف این دسته بندی مطمئـن هستید؟')){return true;}else{return false;}" class="btn btn-danger">حذف</button>
+                                                    </form>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
