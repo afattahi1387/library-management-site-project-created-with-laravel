@@ -24,13 +24,15 @@ class MainController extends Controller
     }
 
     public function books_for_category(Category $category) {
-        if($category->books->count() < 1) {
-            abort(404);
-        }
-
         $books = $category->books()->paginate(5);
         $categories = Category::all();
         return view('main_views.books_for_category', ['books' => $books, 'categories' => $categories, 'category' => $category]);
+    }
+
+    public function search() {
+        $books = Book::where('name', 'like', '%' . $_GET['searched'] . '%')->orWhere('short_description', 'like', '%' . $_GET['searched'] . '%')->orWhere('long_description', 'like', '%' . $_GET['searched'] . '%')->paginate(5);
+        $categories = Category::all();
+        return view('main_views.search', ['books' => $books, 'categories' => $categories]);
     }
 
     public function login_page() {
