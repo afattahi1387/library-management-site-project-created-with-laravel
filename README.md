@@ -4,8 +4,8 @@ this is a library management site project by persian language created with larav
 
 این یک پروژه سایت مدیریت کتابخانه به زبان فارسی است که با لاراول ساخته شده است.
 
-[https://github.com/afattahi1387/library-management-site-project-created-with-laravel] (GitHub Link)
+[GitHub Link](https://github.com/afattahi1387/library-management-site-project-created-with-laravel)
 
-(https://gitlab.com/laravel-projects14/library-site-project-created-with-laravel) [GitLab Link]
+[Gitlab Link](https://gitlab.com/laravel-projects14/library-site-project-created-with-laravel)
 
-(https://www.aparat.com/v/5HkNa?playlist=1726399) [Project Course Link]
+[Project Course Link](https://www.aparat.com/v/5HkNa?playlist=1726399)
