@@ -15,6 +15,8 @@ Route::get('/', 'MainController@home')->name('home');
 
 Route::get('/single-book/{book}', 'MainController@single_book')->name('single.book');
 
+Route::get('/category/{category}', 'MainController@books_for_category')->name('category.books');
+
 Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login.page');
