@@ -3,8 +3,8 @@
     <div class="card mb-4">
         <div class="card-header">جستجو</div>
         <div class="card-body">
-            <form action="" method="GET">
-                <input type="text" class="form-control" placeholder="جستجو..." aria-label="جستجو..." aria-describedby="button-search" /><br>
+            <form action="{{ route('search') }}" method="GET">
+                <input type="text" name="searched" class="form-control" placeholder="جستجو..." @if(isset($_GET['searched']) && !empty($_GET['searched'])) value="{{ $_GET['searched'] }}" @endif aria-label="جستجو..." aria-describedby="button-search" /><br>
                 <input type="submit" value="برو" class="btn btn-primary" id="button-search">
             </form>
         </div>
