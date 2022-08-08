@@ -20,7 +20,8 @@ class MainController extends Controller
             abort(404);
         }
 
-        return view('main_views.single_book', ['book' => $book]);
+        $categories = Category::all();
+        return view('main_views.single_book', ['book' => $book, 'categories' => $categories]);
     }
 
     public function books_for_category(Category $category) {
@@ -37,9 +38,17 @@ class MainController extends Controller
 
     public function login_page() {
         if(auth()->check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('redirect.to.dashboard');
         }
 
         return view('auth.login');
+    }
+
+    public function register_page() {
+        if(auth()->check()) {
+            return redirect()->route('redirect.to.dashboard');
+        }
+
+        return view('auth.register');
     }
 }

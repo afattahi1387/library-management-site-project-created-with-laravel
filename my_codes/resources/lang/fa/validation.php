@@ -3,6 +3,7 @@
 return [
 
     'required' => 'فیلد :attribute الزامی است',
+    'unique' => ':attribute وارد شده موجود می باشد',
 
     'custom' => [
         'attribute-name' => [
@@ -17,7 +18,8 @@ return [
         'name' => 'نام',
         'short_description' => 'توضیحات کوتاه',
         'long_description' => 'توضیحات بلند',
-        'image' => 'تصویر'
+        'image' => 'تصویر',
+        'password' => 'رمز عبور'
     ],
 
 ];

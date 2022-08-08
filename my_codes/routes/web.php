@@ -23,7 +23,17 @@ Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login.page');
 
+Route::get('/register', 'MainController@register_page')->name('register.page');
+
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+
+Route::get('/redirect-to-dashboard', function() {
+    if(auth()->user()->type == 'admin') {
+        return redirect()->route('dashboard');
+    } else {
+        return redirect()->route('users.dashboard');
+    }
+})->middleware('auth')->name('redirect.to.dashboard');
 
 Route::prefix('panel')->group(function() {
     Route::post('/add-category', 'DashboardController@add_category')->name('category.add');
@@ -61,4 +71,8 @@ Route::prefix('panel')->group(function() {
     Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('category.delete');
 
     Route::delete('/delete-publisher/{publisher}', 'DashboardController@delete_publisher')->name('publisher.delete');
+});
+
+Route::prefix('users')->group(function() {
+    Route::get('/dashboard', 'UsersDashboardController@dashboard')->name('users.dashboard');
 });
