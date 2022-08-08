@@ -1,5 +1,6 @@
 @extends('includes.html_structure')
 @section('content')
+    <br>
     <!-- Page content-->
     <div class="container">
         <div class="row">
