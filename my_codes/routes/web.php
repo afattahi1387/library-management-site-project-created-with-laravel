@@ -75,4 +75,6 @@ Route::prefix('panel')->group(function() {
 
 Route::prefix('users')->group(function() {
     Route::get('/dashboard', 'UsersDashboardController@dashboard')->name('users.dashboard');
+
+    Route::get('/trust/{book}', 'UsersDashboardController@trust')->name('book.trust');
 });

@@ -25,7 +25,17 @@
                             <hr>
                             {!! $book->long_description !!}
                         </section>
-                    </article>
+                        @if(Auth::check())
+                            @if(Auth::user()->type == 'admin')
+                                <a href="{{ route('book.edit', ['book' => $book->id]) }}" class="btn btn-warning">ویرایش</a>
+                            @else
+                                <a href="{{ route('book.trust', ['book' => $book->id]) }}" class="btn btn-primary">امانت گرفتن</a>
+                            @endif
+                        @else
+                            <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
+                            <span class="text-danger">ابتدا باید وارد شوید</span>
+                        @endif
+                    </article><br>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
