@@ -19,6 +19,11 @@
                                 <span class="text-danger">{{ $errors->first('name') }}</span><br>
                             @endif
                             <br>
+                            <input type="number" name="quantity" placeholder="تعداد کتاب" value="{{ old('quantity') }}" class="form-control @if($errors->has('quantity')) is-invalid @endif">
+                            @if($errors->has('quantity'))
+                                <span class="text-danger">{{ $errors->first('quantity') }}</span><br>
+                            @endif
+                            <br>
                             <textarea name="short_description" id="short_description" placeholder="توضیحات کوتاه" class="form-control" rows="15">{{ old('short_description') }}</textarea>
                             @if($errors->has('short_description'))
                                 <span class="text-danger">{{ $errors->first('short_description') }}</span><br>

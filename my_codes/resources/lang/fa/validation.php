@@ -16,6 +16,7 @@ return [
         'category_name' => 'نام دسته بندی',
         'publisher_name' => 'نام انتشارات',
         'name' => 'نام',
+        'quantity' => 'تعداد',
         'short_description' => 'توضیحات کوتاه',
         'long_description' => 'توضیحات بلند',
         'image' => 'تصویر',

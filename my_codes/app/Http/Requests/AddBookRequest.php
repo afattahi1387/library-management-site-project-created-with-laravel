@@ -25,6 +25,7 @@ class AddBookRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'quantity' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
         ];

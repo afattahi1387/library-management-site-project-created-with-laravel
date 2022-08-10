@@ -84,6 +84,7 @@ class DashboardController extends Controller
     public function create_book(AddBookRequest $request) {
         $new_book = Book::create([
             'name' => $request['name'],
+            'quantity' => $request['quantity'],
             'image' => '',
             'short_description' => $request['short_description'],
             'long_description' => $request['long_description'],
@@ -121,6 +122,7 @@ class DashboardController extends Controller
 
     public function update_book(EditBookRequest $request, Book $book) {
         $name = $request->name;
+        $quantity = $request->quantity;
         $short_description = $request->short_description;
         $long_description = $request->long_description;
         $category_id = $request->category_id;
@@ -140,6 +142,7 @@ class DashboardController extends Controller
 
         $book->update([
             'name' => $name,
+            'quantity' => $quantity,
             'image' => $image,
             'short_description' => $short_description,
             'long_description' => $long_description,
