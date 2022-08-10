@@ -14,6 +14,7 @@
                         <div class="card-body">
                             <div class="small text-muted">دسته بندی: {{ $book->category->category_name }}</div><br>
                             <div class="small text-muted">انتشارات: {{ $book->publisher->publisher_name }}</div><br>
+                            <div class="small text-muted">تعداد کتاب: {{ $book->quantity }}</div><br>
                             <h2 class="card-title h4">{{ $book->name }}</h2>
                             <p class="card-text">{!! $book->short_description !!}</p>
                             <a class="btn btn-primary" href="{{ route('single.book', ['book' => $book->id]) }}">مشاهده اطلاعات کتاب →</a>

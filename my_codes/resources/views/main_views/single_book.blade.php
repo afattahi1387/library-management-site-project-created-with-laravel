@@ -16,6 +16,7 @@
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">دسته بندی: {{ $book->category->category_name }}</div>
                             <div class="text-muted fst-italic mb-2">انتشارات: {{ $book->publisher->publisher_name }}</div>
+                            <div class="text-muted fst-italic mb-2">تعداد کتاب: {{ $book->quantity }}</div>
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('images/books_images/' . $book->image) }}" alt="تصویری برای نمایش وجود ندارد." /></figure>
@@ -27,7 +28,7 @@
                         </section>
                         @if(Auth::check())
                             @if(Auth::user()->type == 'admin')
-                                <a href="{{ route('book.edit', ['book' => $book->id]) }}" class="btn btn-warning">ویرایش</a>
+                                <a href="{{ route('book.edit', ['book' => $book->id]) }}" style="color: white;" class="btn btn-warning">ویرایش</a>
                             @else
                                 <a href="{{ route('book.trust', ['book' => $book->id]) }}" class="btn btn-primary">امانت گرفتن</a>
                             @endif
