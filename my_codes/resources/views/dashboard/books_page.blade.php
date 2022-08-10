@@ -29,7 +29,7 @@
                                 @foreach ($books as $book)
                                     <tr>
                                         <td>@php echo ++$booksCounter; @endphp</td>
-                                        <td>{{ $book->name }}</td>
+                                        <td>{{ $book->name }}<br><span style="color: red;">({{ $book->quantity }} تا)</span></td>
                                         <td>
                                             <img src="/images/books_images/{{ $book->image }}" style="width: 150px; height: 50px; border-radius: 5px;" alt="تصویری به نمایش در نیامد.">
                                         </td>
