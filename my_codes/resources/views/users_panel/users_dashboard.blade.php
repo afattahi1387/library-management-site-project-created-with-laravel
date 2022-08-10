@@ -27,12 +27,15 @@
                                 @foreach ($trusted_books as $book)
                                     <tr>
                                         <td>@php echo ++$booksCounter; @endphp</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $book->book->name }}</td>
+                                        <td>
+                                            <img src="/images/books_images/{{ $book->book->image }}" style="width: 150px; height: 50px; border-radius: 5px;" alt="تصویری به نمایش در نیامد.">
+                                        </td>
+                                        <td>{{ $book->book->category->category_name }}</td>
+                                        <td>{{ $book->book->publisher->publisher_name }}</td>
                                         <td>
                                             <div class="d-flex">
+                                                <a href="{{ route('single.book', ['book' => $book->book_id]) }}" class="btn btn-primary" target="_blank">مشاهده کتاب</a>
                                                 {{-- <a href="{{ route('dashboard') }}?edit-category={{ $category->id }}" style="color: white; margin-right: 2px;" class="btn btn-warning">ویرایش</a>
                                                 @if($category->books->count() < 1)
                                                     <form action="{{ route('category.delete', ['category' => $category->id]) }}" method="POST" id="delete_category_form">
