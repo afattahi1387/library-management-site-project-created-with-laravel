@@ -25,6 +25,7 @@
                             {!! $book->short_description !!}
                             <hr>
                             {!! $book->long_description !!}
+                            {{-- <span>{{ $book->trusted }}</span> --}}
                         </section>
                         @if(Auth::check())
                             @if(Auth::user()->type == 'admin')
