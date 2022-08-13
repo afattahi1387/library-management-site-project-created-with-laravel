@@ -31,4 +31,29 @@ class UsersDashboardController extends Controller
 
         return redirect()->route('users.dashboard');
     }
+
+    public function extended($book) {
+        $trust = Trust::where('book_id', $book)->where('user_id', auth()->user()->id)->get()[0];
+        if((time() - $trust->trusted_at) < (3600 * 24 * 14) || $trust->extended) {
+            abort(404);
+        }
+
+        $trust->update([
+            'extended' => 1,
+            'trusted_at' => time()
+        ]);
+
+        return redirect()->route('users.dashboard');
+    }
+
+    public function restore(Trust $trust) {
+        if((time() - $trust->trusted_at) < (3600 * 24 * 14)) {
+            $penaltyPrice = 0;
+        } else {
+            $time = floor((time() - $trust->trusted_at - (3600 * 24 * 14)) / (3600 * 24));
+            $penaltyPrice = $time * env('PENALTY_PRICE');
+        }
+
+        dd($penaltyPrice);
+    }
 }
