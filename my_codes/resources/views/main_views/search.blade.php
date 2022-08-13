@@ -1,5 +1,11 @@
 @extends('includes.html_structure')
+
+@section('title')
+جستجو برای: {{ $_GET['searched'] }}
+@endsection
+
 @section('content')
+    <br>
     <!-- Page content-->
     <div class="container">
         <div class="row">
