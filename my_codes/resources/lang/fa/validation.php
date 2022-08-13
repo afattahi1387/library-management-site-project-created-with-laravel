@@ -20,7 +20,8 @@ return [
         'short_description' => 'توضیحات کوتاه',
         'long_description' => 'توضیحات بلند',
         'image' => 'تصویر',
-        'password' => 'رمز عبور'
+        'password' => 'رمز عبور',
+        'writer_description' => 'رزومه نویسنده'
     ],
 
 ];

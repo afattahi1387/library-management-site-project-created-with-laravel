@@ -14,8 +14,20 @@
                     <div class="card-body" style="direction: rtl;">
                         <form action="{{ route('writer.create') }}" method="POST">
                             {{ csrf_field() }}
-                            <input type="text" name="name" placeholder="نام نویسنده" class="form-control"><br>
-                            <textarea name="description" id="description" rows="15" class="form-control" placeholder="رزومه"></textarea><br>
+                            <input type="text" name="name" placeholder="نام نویسنده" class="form-control @if($errors->has('name')) is-invalid @endif" value="{{ old('name') }}">
+                            @if($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span><br>
+                            @endif
+                            <br>
+                            <textarea name="writer_description" id="writer_description" rows="15" class="form-control" placeholder="رزومه">{{ old('writer_description') }}</textarea>
+                            @if($errors->has('writer_description'))
+                                <span class="text-danger">{{ $errors->first('writer_description') }}</span><br>
+                            @endif
+                            <br>
+                            <div class="form-check mb-3">
+                                <input class="form-input" name="image_required" id="image_required" type="checkbox" />
+                                <label class="form-check-label" for="image_required">نمایش فرم آپلود تصویر برای این نویسنده</label>
+                            </div>
                             <input type="submit" value="افزودن" class="btn btn-success">
                         </form>
                     </div>
@@ -28,7 +40,7 @@
 
     <script>
       tinymce.init({
-        selector: '#description',
+        selector: '#writer_description',
         'directionality': 'rtl',
         plugins: [
 

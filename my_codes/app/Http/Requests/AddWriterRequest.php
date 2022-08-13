@@ -25,7 +25,7 @@ class AddWriterRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'description' => 'required'
+            'writer_description' => 'required'
         ];
     }
 }
