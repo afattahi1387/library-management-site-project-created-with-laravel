@@ -19,6 +19,7 @@
                                     <th>تصویر</th>
                                     <th>دسته بندی</th>
                                     <th>انتشارات</th>
+                                    <th>وضعیت</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
@@ -34,16 +35,22 @@
                                         <td>{{ $book->book->category->category_name }}</td>
                                         <td>{{ $book->book->publisher->publisher_name }}</td>
                                         <td>
+                                            @if($book->status()[0] == 'good')
+                                                در حال امانت
+                                            @else
+                                                در حال جریمه خوردن
+                                                <br>
+                                                <span style="color: red;">({{ $book->status()[1] }} تومان)</span>
+                                            @endif
+                                        </td>
+                                        <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('single.book', ['book' => $book->book_id]) }}" class="btn btn-primary" target="_blank">مشاهده کتاب</a>
-                                                {{-- <a href="{{ route('dashboard') }}?edit-category={{ $category->id }}" style="color: white; margin-right: 2px;" class="btn btn-warning">ویرایش</a>
-                                                @if($category->books->count() < 1)
-                                                    <form action="{{ route('category.delete', ['category' => $category->id]) }}" method="POST" id="delete_category_form">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="delete">
-                                                        <button onclick="if(confirm('آیا از حذف این دسته بندی مطمئـن هستید؟')){return true;}else{return false;}" class="btn btn-danger">حذف</button>
-                                                    </form>
-                                                @endif --}}
+                                                <a href="{{ route('single.book', ['book' => $book->book_id]) }}" class="btn btn-primary" style="margin-right: 2px;" target="_blank">مشاهده کتاب</a>
+                                                <form action="{{ route('trust.restore', ['trust' => $book->id]) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    <button class="btn btn-danger" onclick="if(confirm('آیا از بازگرداندن این کتاب مطمئـن هستید؟')){return true;}else{return false;}">بازگرداندن</button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
