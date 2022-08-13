@@ -8,6 +8,9 @@
             <div class="col-lg-8">
                 <!-- Nested row for non-featured blog posts-->
                 <!-- Blog post-->
+                @if($books->count() == 0)
+                    <div class="alert alert-danger">کتابی یافت نشد!</div>
+                @endif
                 @foreach($books as $book)
                     <div class="card mb-4">
                         <a href="{{ route('single.book', ['book' => $book->id]) }}"><img class="card-img-top" src="{{ asset('/images/books_images/' . $book->image) }}" alt="تصویر به نمایش در نیامد." /></a>
