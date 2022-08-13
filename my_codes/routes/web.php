@@ -21,7 +21,7 @@ Route::get('/search', 'MainController@search')->name('search');
 
 Auth::routes();
 
-Route::get('/login', 'MainController@login_page')->name('login.page');
+Route::get('/login', 'MainController@login_page')->name('login');
 
 Route::get('/register', 'MainController@register_page')->name('register.page');
 
@@ -71,10 +71,24 @@ Route::prefix('panel')->group(function() {
     Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('category.delete');
 
     Route::delete('/delete-publisher/{publisher}', 'DashboardController@delete_publisher')->name('publisher.delete');
+
+    Route::get('/writers', function() {
+        return 'hello world';
+    })->name('admin.panel.writers');
+
+    Route::get('/add-writer', 'DashboardController@add_writer')->name('writer.add');
+
+    Route::post('/create-writer', 'DashboardController@create_writer')->name('writer.create');
+
+    Route::get('upload-writer-image/{writer}', 'DashboardController@upload_writer_image')->name('upload.writer.image');
 });
 
 Route::prefix('users')->group(function() {
     Route::get('/dashboard', 'UsersDashboardController@dashboard')->name('users.dashboard');
 
     Route::get('/trust/{book}', 'UsersDashboardController@trust')->name('book.trust');
+
+    Route::get('/extended/{book}', 'UsersDashboardController@extended')->name('trust.extended');
+
+    Route::delete('/restore/{trust}', 'UsersDashboardController@restore')->name('trust.restore');
 });
