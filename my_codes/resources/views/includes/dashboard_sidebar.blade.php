@@ -19,6 +19,14 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-book"></i></div>
                     کتاب ها
                 </a>
+                <a class="nav-link" href="{{ route('writer.add') }}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
+                    افزودن نویسنده
+                </a>
+                <a class="nav-link" href="{{ route('books.page') }}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
+                    نویسندگان
+                </a>
                 <a class="nav-link" href="{{ route('trash') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-trash"></i></div>
                     سطل زباله
