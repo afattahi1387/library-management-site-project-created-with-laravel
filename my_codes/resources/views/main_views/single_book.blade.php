@@ -25,13 +25,26 @@
                             {!! $book->short_description !!}
                             <hr>
                             {!! $book->long_description !!}
-                            {{-- <span>{{ $book->trusted }}</span> --}}
                         </section>
                         @if(Auth::check())
                             @if(Auth::user()->type == 'admin')
                                 <a href="{{ route('book.edit', ['book' => $book->id]) }}" style="color: white;" class="btn btn-warning">ویرایش</a>
                             @else
-                                <a href="{{ route('book.trust', ['book' => $book->id]) }}" class="btn btn-primary">امانت گرفتن</a>
+                                @if($book->trusted())
+                                    @if($book->check_status() == 'extended' || $book->check_status() == 'trusted')
+                                        <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
+                                        <span class="text-danger">شما قبلا این کتاب را به امانت گرفته اید</span>
+                                    @else
+                                        <a href="{{ route('trust.extended', ['book' => $book->id]) }}" class="btn btn-warning" style="color: white;">تمدید</a>
+                                    @endif
+                                @else
+                                    @if($book->quantity == 0)
+                                        <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
+                                        <span class="text-danger">تمامی کتاب های موجود به امانت گرفته شده است</span>
+                                    @else
+                                        <a href="{{ route('book.trust', ['book' => $book->id]) }}" class="btn btn-primary">امانت گرفتن</a>
+                                    @endif
+                                @endif
                             @endif
                         @else
                             <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
