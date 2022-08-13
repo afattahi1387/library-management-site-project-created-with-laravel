@@ -17,6 +17,7 @@
                             <div class="text-muted fst-italic mb-2">دسته بندی: {{ $book->category->category_name }}</div>
                             <div class="text-muted fst-italic mb-2">انتشارات: {{ $book->publisher->publisher_name }}</div>
                             <div class="text-muted fst-italic mb-2">تعداد کتاب: {{ $book->quantity }}</div>
+                            <div class="text-muted fst-italic mb-2">نام نویسنده: {{ $book->writer->name }}</div>
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('images/books_images/' . $book->image) }}" alt="تصویری برای نمایش وجود ندارد." /></figure>
