@@ -10,7 +10,7 @@ class Book extends Model
 {
     use SoftDeletes;
     
-    protected $fillable = ['name', 'quantity', 'image', 'short_description', 'long_description', 'category_id', 'publisher_id'];
+    protected $fillable = ['name', 'quantity', 'trusted', 'image', 'short_description', 'long_description', 'category_id', 'publisher_id', 'writer_id'];
 
     public function category() {
         return $this->belongsTo(Category::class);
@@ -20,12 +20,30 @@ class Book extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    // public function trusted() {
-    //     $user_id = auth()->user()->id;
-    //     if(empty(Trust::where('book_id', $this->id)->where('user_id', $user_id)->get())) {
-    //         return false;
-    //     }
+    public function writer() {
+        return $this->belongsTo(Writer::class);
+    }
 
-    //     return true;
-    // }
+    public function check_status() {
+        $user_id = auth()->user()->id;
+        $trust = Trust::where('user_id', $user_id)->where('book_id', $this->id)->get();
+        if((time() - $trust[0]->trusted_at) < (3600 * 24 * 14)) {
+            return 'trusted';
+        }
+
+        if($trust[0]->extended) {
+            return 'extended';
+        } else {
+            return 'dont_extended';
+        }
+    }
+
+    public function trusted() {
+        if(!auth()->check()) {
+            return false;
+        }
+
+        $user_id =  auth()->user()->id;
+        return Trust::where('user_id', $user_id)->where('book_id', $this->id)->exists();
+    }
 }
