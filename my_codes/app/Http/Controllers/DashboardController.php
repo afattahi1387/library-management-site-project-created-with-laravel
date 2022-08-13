@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use Illuminate\Http\Request;
+use App\Writer;
 use App\Category;
+use App\Publisher;
+use Illuminate\Http\Request;
 use App\Http\Requests\AddBookRequest;
-use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddImageRequest;
-use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditBookRequest;
+use App\Http\Requests\AddWriterRequest;
+use App\Http\Requests\AddCategoryRequest;
+use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
-use App\Publisher;
 
 class DashboardController extends Controller
 {
@@ -208,5 +210,23 @@ class DashboardController extends Controller
 
         $publisher->delete();
         return redirect()->route('publishers.page');
+    }
+
+    public function add_writer() {
+        return view('dashboard.add_writer');
+    }
+
+    public function create_writer(AddWriterRequest $request) {
+        $new_writer = Writer::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => ''
+        ]);
+
+        return redirect()->route('upload.writer.image', ['writer' => $new_writer->id]);
+    }
+
+    public function upload_writer_image(Writer $writer) {
+        dd($writer);
     }
 }
