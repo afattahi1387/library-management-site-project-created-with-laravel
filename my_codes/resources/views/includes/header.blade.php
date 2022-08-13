@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
                     </form>
                 @else
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login.page') }}">ورود</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ورود</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register.page') }}">ثبت نام</a></li>
                 @endif
             </ul>
