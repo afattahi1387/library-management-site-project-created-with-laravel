@@ -219,8 +219,7 @@ class DashboardController extends Controller
     public function create_writer(AddWriterRequest $request) {
         $new_writer = Writer::create([
             'name' => $request->name,
-            'description' => $request->description,
-            'image' => ''
+            'description' => $request->description
         ]);
 
         return redirect()->route('upload.writer.image', ['writer' => $new_writer->id]);
