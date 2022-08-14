@@ -13,3 +13,5 @@ yarn-error.log
 /public/images/books_images/*.*
 /public/uploads/books_images/*.*
 /public/images/trash_images/*.*
+/public/images/writers_images/*.*
+/public/uploads/writers_images/*.*
