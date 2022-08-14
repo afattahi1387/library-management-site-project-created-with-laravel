@@ -19,6 +19,8 @@ Route::get('/category/{category}', 'MainController@books_for_category')->name('c
 
 Route::get('/search', 'MainController@search')->name('search');
 
+Route::get('/single-writer/{writer}', 'MainController@single_writer')->name('single.writer');
+
 Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login');
@@ -80,7 +82,9 @@ Route::prefix('panel')->group(function() {
 
     Route::post('/create-writer', 'DashboardController@create_writer')->name('writer.create');
 
-    Route::get('upload-writer-image/{writer}', 'DashboardController@upload_writer_image')->name('upload.writer.image');
+    Route::get('/upload-writer-image/{writer}', 'DashboardController@upload_writer_image')->name('upload.writer.image');
+
+    Route::post('/upload-writer-image-post/{writer}', 'DashboardController@upload_writer_image_post')->name('upload.writer.image.post');
 });
 
 Route::prefix('users')->group(function() {
