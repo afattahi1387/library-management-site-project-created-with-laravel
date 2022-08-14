@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Category;
+use App\Writer;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -34,6 +35,10 @@ class MainController extends Controller
         $books = Book::where('name', 'like', '%' . $_GET['searched'] . '%')->orWhere('short_description', 'like', '%' . $_GET['searched'] . '%')->orWhere('long_description', 'like', '%' . $_GET['searched'] . '%')->paginate(5);
         $categories = Category::all();
         return view('main_views.search', ['books' => $books, 'categories' => $categories]);
+    }
+
+    public function single_writer(Writer $writer) {
+        dd($writer);
     }
 
     public function login_page() {
