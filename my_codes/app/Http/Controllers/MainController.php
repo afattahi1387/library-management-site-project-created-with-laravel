@@ -38,7 +38,7 @@ class MainController extends Controller
     }
 
     public function single_writer(Writer $writer) {
-        dd($writer);
+        return view('main_views.writer_information', ['writer' => $writer]);
     }
 
     public function login_page() {
