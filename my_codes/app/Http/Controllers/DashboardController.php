@@ -15,6 +15,7 @@ use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
+use App\Http\Requests\UploadWriterImageRequest;
 
 class DashboardController extends Controller
 {
@@ -230,6 +231,21 @@ class DashboardController extends Controller
     }
 
     public function upload_writer_image(Writer $writer) {
-        dd($writer);
+        return view('dashboard.upload_image_for_new_writer', ['writer' => $writer]);
+    }
+
+    public function upload_writer_image_post(Writer $writer, UploadWriterImageRequest $request) {
+        $imagePath = $request->image->path();
+        $imageFileName = $request->image->getClientOriginalName();
+        $imageNewName = $writer->id . '_' . $imageFileName;
+        move_uploaded_file($imagePath, 'uploads/writers_images/' . $imageFileName);
+        rename('uploads/writers_images/' . $imageFileName, 'uploads/writers_images/' . $imageNewName);
+        copy('uploads/writers_images/' . $imageNewName, 'images/writers_images/' . $imageNewName);
+        unlink('uploads/writers_images/' . $imageNewName);
+        $writer->update([
+            'image' => $imageNewName
+        ]);
+
+        return redirect()->route('single.writer', ['writer' => $writer->id]);
     }
 }
