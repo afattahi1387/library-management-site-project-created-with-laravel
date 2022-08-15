@@ -48,6 +48,13 @@
                                 @endforeach
                             </select>
                             <br>
+                            <label for="category_id">نویسنده:</label>
+                            <select name="writer_id" id="writer_id" class="form-control">
+                                @foreach($writers as $writer)
+                                    <option value="{{ $writer->id }}">{{ $writer->name }}</option>
+                                @endforeach
+                            </select>
+                            <br>
                             <input type="submit" value="افزودن" class="btn btn-success">
                         </form>
                     </div>

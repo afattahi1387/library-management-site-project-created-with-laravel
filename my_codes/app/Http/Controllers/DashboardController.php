@@ -82,18 +82,21 @@ class DashboardController extends Controller
     public function add_book_page() {
         $categories = Category::orderBy('id', 'DESC')->get();
         $publishers = Publisher::orderBy('id', 'DESC')->get();
-        return view('dashboard.add_book', ['categories' => $categories, 'publishers' => $publishers]);
+        $writers = Writer::orderBy('id', 'DESC')->get();
+        return view('dashboard.add_book', ['categories' => $categories, 'publishers' => $publishers, 'writers' => $writers]);
     }
 
     public function create_book(AddBookRequest $request) {
         $new_book = Book::create([
             'name' => $request['name'],
             'quantity' => $request['quantity'],
+            'trusted' => 0,
             'image' => '',
             'short_description' => $request['short_description'],
             'long_description' => $request['long_description'],
             'category_id' => $request['category_id'],
-            'publisher_id' => $request['publisher_id']
+            'publisher_id' => $request['publisher_id'],
+            'writer_id' => $request['writer_id']
         ]);
 
         return redirect()->route('book.add.image', ['book' => $new_book->id]);
@@ -121,7 +124,8 @@ class DashboardController extends Controller
     public function edit_book(Book $book) {
         $categories = Category::orderBy('id', 'DESC')->get();
         $publishers = Publisher::orderBy('id', 'DESC')->get();
-        return view('dashboard.edit_book', ['book' => $book, 'categories' => $categories, 'publishers' => $publishers]);
+        $writers = Writer::orderBy('id', 'DESC')->get();
+        return view('dashboard.edit_book', ['book' => $book, 'categories' => $categories, 'publishers' => $publishers, 'writers' => $writers]);
     }
 
     public function update_book(EditBookRequest $request, Book $book) {
@@ -131,6 +135,7 @@ class DashboardController extends Controller
         $long_description = $request->long_description;
         $category_id = $request->category_id;
         $publisher_id = $request->publisher_id;
+        $writer_id = $request->writer_id;
         if(!empty($request->image)) {
             $imagePath = $request->image->path();
             $imageFileName = $request->image->getClientOriginalName();
@@ -151,7 +156,8 @@ class DashboardController extends Controller
             'short_description' => $short_description,
             'long_description' => $long_description,
             'category_id' => $category_id,
-            'publisher_id' => $publisher_id
+            'publisher_id' => $publisher_id,
+            'writer_id' => $writer_id
         ]);
 
         return redirect()->route('single.book', ['book' => $book->id]);

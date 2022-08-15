@@ -22,7 +22,7 @@
                                 <span class="text-danger">{{ $errors->first('name') }}</span><br>
                             @endif
                             <br>
-                            <input type="number" name="quantity" placeholder="تعداد کتاب" value="@if(empty(old('quantity'))){{ $book->quantity }}@else{{ old('quantity') }}@endif" class="form-control @if($errors->has('quantity')) is-invalid @endif">
+                            <input type="number" name="quantity" placeholder="تعداد کتاب" min="{{ $book->trusted }}" value="@if(empty(old('quantity'))){{ $book->quantity }}@else{{ old('quantity') }}@endif" class="form-control @if($errors->has('quantity')) is-invalid @endif">
                             @if($errors->has('quantity'))
                                 <span class="text-danger">{{ $errors->first('quantity') }}</span><br>
                             @endif
@@ -55,6 +55,17 @@
                                         <option value="{{ $publisher->id }}" selected>{{ $publisher->publisher_name }}</option>
                                     @else
                                         <option value="{{ $publisher->id }}">{{ $publisher->publisher_name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <br>
+                            <label for="writer_id">نویسنده:</label>
+                            <select name="writer_id" id="writer_id" class="form-control">
+                                @foreach($writers as $writer)
+                                    @if($book->writer_id == $writer->id)
+                                        <option value="{{ $writer->id }}" selected>{{ $writer->name }}</option>
+                                    @else
+                                        <option value="{{ $writer->id }}">{{ $writer->name }}</option>
                                     @endif
                                 @endforeach
                             </select>
