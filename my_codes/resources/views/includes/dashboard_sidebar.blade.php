@@ -23,7 +23,7 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
                     افزودن نویسنده
                 </a>
-                <a class="nav-link" href="{{ route('books.page') }}">
+                <a class="nav-link" href="{{ route('admin.panel.writers') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                     نویسندگان
                 </a>
