@@ -15,6 +15,7 @@ use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
+use App\Http\Requests\EditWriterRequest;
 use App\Http\Requests\UploadWriterImageRequest;
 
 class DashboardController extends Controller
@@ -243,6 +244,36 @@ class DashboardController extends Controller
         copy('uploads/writers_images/' . $imageNewName, 'images/writers_images/' . $imageNewName);
         unlink('uploads/writers_images/' . $imageNewName);
         $writer->update([
+            'image' => $imageNewName
+        ]);
+
+        return redirect()->route('single.writer', ['writer' => $writer->id]);
+    }
+
+    public function edit_writer(Writer $writer) {
+        return view('dashboard.edit_writer', ['writer' => $writer]);
+    }
+
+    public function update_writer(Writer $writer, EditWriterRequest $request) {
+        if(!empty($request->image)) {
+            $imagePath = $request->image->path();
+            $imageName = $request->image->getClientOriginalName();
+            $imageNewName = $writer->id . '_' . $imageName;
+            move_uploaded_file($imagePath, 'uploads/writers_images/' . $imageName);
+            rename('uploads/writers_images/' . $imageName, 'uploads/writers_images/' . $imageNewName);
+            copy('uploads/writers_images/' . $imageNewName, 'images/writers_images/' . $imageNewName);
+            unlink('uploads/writers_images/' . $imageNewName);
+        } else {
+            if(empty($writer->image)) {
+                $imageNewName = null;
+            } else {
+                $imageNewName = $writer->image;
+            }
+        }
+
+        $writer->update([
+            'name' => $request->name,
+            'description' => $request->writer_description,
             'image' => $imageNewName
         ]);
 

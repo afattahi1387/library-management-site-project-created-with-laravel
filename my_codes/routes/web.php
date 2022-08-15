@@ -85,6 +85,10 @@ Route::prefix('panel')->group(function() {
     Route::get('/upload-writer-image/{writer}', 'DashboardController@upload_writer_image')->name('upload.writer.image');
 
     Route::post('/upload-writer-image-post/{writer}', 'DashboardController@upload_writer_image_post')->name('upload.writer.image.post');
+
+    Route::get('/edit-writer/{writer}', 'DashboardController@edit_writer')->name('writer.edit');
+
+    Route::put('/update-writer/{writer}', 'DashboardController@update_writer')->name('writer.update');
 });
 
 Route::prefix('users')->group(function() {
