@@ -74,9 +74,7 @@ Route::prefix('panel')->group(function() {
 
     Route::delete('/delete-publisher/{publisher}', 'DashboardController@delete_publisher')->name('publisher.delete');
 
-    Route::get('/writers', function() {
-        return 'hello world';
-    })->name('admin.panel.writers');
+    Route::get('/writers', 'DashboardController@admin_panel_writers')->name('admin.panel.writers');
 
     Route::get('/add-writer', 'DashboardController@add_writer')->name('writer.add');
 
@@ -89,6 +87,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/edit-writer/{writer}', 'DashboardController@edit_writer')->name('writer.edit');
 
     Route::put('/update-writer/{writer}', 'DashboardController@update_writer')->name('writer.update');
+
+    Route::delete('/delete-writer/{writer}', 'DashboardController@delete_writer')->name('writer.delete');
 });
 
 Route::prefix('users')->group(function() {

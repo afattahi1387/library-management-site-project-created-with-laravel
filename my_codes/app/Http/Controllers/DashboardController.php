@@ -279,4 +279,16 @@ class DashboardController extends Controller
 
         return redirect()->route('single.writer', ['writer' => $writer->id]);
     }
+
+    public function admin_panel_writers() {
+        $writers = Writer::orderBy('id', 'DESC')->get();
+        return view('dashboard.admin_panel_writers', ['writers' => $writers]);
+    }
+
+    public function delete_writer(Writer $writer) {
+        $writerImage = $writer->image;
+        unlink('images/writers_images/' . $writerImage);
+        $writer->delete();
+        return redirect()->route('admin.panel.writers');
+    }
 }
