@@ -24,9 +24,9 @@ class UsersDashboardController extends Controller
             'trusted_at' => time()
         ]);
 
-        $book_quantity = $book->quantity;
+        $book_trusted = $book->trusted;
         $book->update([
-            'quantity' => $book_quantity - 1
+            'trusted' => $book_trusted + 1
         ]);
 
         return redirect()->route('users.dashboard');

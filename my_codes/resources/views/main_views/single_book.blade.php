@@ -39,7 +39,7 @@
                                         <a href="{{ route('trust.extended', ['book' => $book->id]) }}" class="btn btn-warning" style="color: white;">تمدید</a>
                                     @endif
                                 @else
-                                    @if($book->quantity == 0)
+                                    @if(($book->quantity - $book->trusted) == 0)
                                         <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
                                         <span class="text-danger">تمامی کتاب های موجود به امانت گرفته شده است</span>
                                     @else
