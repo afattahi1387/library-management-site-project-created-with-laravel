@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Penalty;
 use App\Trust;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,19 @@ class UsersDashboardController extends Controller
             $penaltyPrice = $time * env('PENALTY_PRICE');
         }
 
-        dd($penaltyPrice);
+        $book = Book::find($trust->book_id);
+        $book_trusted = $book->trusted;
+        $book->update([
+            'trusted' => $book_trusted - 1
+        ]);
+        $trust->delete();
+        if($penaltyPrice > 0) {
+            Penalty::create([
+                'user_id' => auth()->user()->id,
+                'penalty' => $penaltyPrice
+            ]);
+        }
+
+        return redirect()->route('users.dashboard');
     }
 }
