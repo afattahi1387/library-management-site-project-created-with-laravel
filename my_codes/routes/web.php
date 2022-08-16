@@ -99,4 +99,6 @@ Route::prefix('users')->group(function() {
     Route::get('/extended/{book}', 'UsersDashboardController@extended')->name('trust.extended');
 
     Route::delete('/restore/{trust}', 'UsersDashboardController@restore')->name('trust.restore');
+
+    Route::get('/penalties', 'UsersDashboardController@penalties')->name('user.penalties');
 });

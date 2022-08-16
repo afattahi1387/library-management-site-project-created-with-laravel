@@ -64,10 +64,20 @@ class UsersDashboardController extends Controller
         if($penaltyPrice > 0) {
             Penalty::create([
                 'user_id' => auth()->user()->id,
+                'book_name' => $book->name,
                 'penalty' => $penaltyPrice
             ]);
         }
 
         return redirect()->route('users.dashboard');
+    }
+
+    public function penalties() {
+        $penalties = Penalty::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
+        $sum_of_penalties = 0;
+        foreach($penalties as $penalty) {
+            $sum_of_penalties += $penalty->penalty;
+        }
+        return view('users_panel.user_penalties', ['penalties' => $penalties, 'sum_of_penalties' => $sum_of_penalties]);
     }
 }
