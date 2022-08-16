@@ -29,7 +29,7 @@
                 </a>
                 <a class="nav-link" href="{{ route('find.user.trusted.books') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-handshake"></i></div>
-                    کتاب های امانت
+                    کتاب های امانت گرفته شده
                 </a>
                 <a class="nav-link" href="{{ route('trash') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-trash"></i></div>
