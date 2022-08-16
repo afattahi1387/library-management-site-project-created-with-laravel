@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\User;
 use App\Writer;
 use App\Category;
 use App\Publisher;
@@ -11,11 +12,11 @@ use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\AddImageRequest;
 use App\Http\Requests\EditBookRequest;
 use App\Http\Requests\AddWriterRequest;
+use App\Http\Requests\EditWriterRequest;
 use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
-use App\Http\Requests\EditWriterRequest;
 use App\Http\Requests\UploadWriterImageRequest;
 
 class DashboardController extends Controller
@@ -299,6 +300,11 @@ class DashboardController extends Controller
     }
 
     public function find_user_trusted_books() {
-        return 'hello';
+        if(isset($_GET['searched_user']) && !empty($_GET['searched_user'])) {
+            $results = User::where('name', 'like', '%' . $_GET['searched_user'] . '%')->where('type', 'user')->get();
+            return view('dashboard.find_user_trusted_books', ['results' => $results]);
+        }
+
+        return view('dashboard.find_user_trusted_books');
     }
 }
