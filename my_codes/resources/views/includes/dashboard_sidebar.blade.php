@@ -27,6 +27,10 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                     نویسندگان
                 </a>
+                <a class="nav-link" href="{{ route('find.user.trusted.books') }}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-handshake"></i></div>
+                    کتاب های امانت
+                </a>
                 <a class="nav-link" href="{{ route('trash') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-trash"></i></div>
                     سطل زباله
