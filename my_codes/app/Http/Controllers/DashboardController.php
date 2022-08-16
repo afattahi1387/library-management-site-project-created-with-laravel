@@ -297,4 +297,8 @@ class DashboardController extends Controller
         $writer->delete();
         return redirect()->route('admin.panel.writers');
     }
+
+    public function find_user_trusted_books() {
+        return 'hello';
+    }
 }

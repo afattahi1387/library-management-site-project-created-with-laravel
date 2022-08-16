@@ -89,6 +89,8 @@ Route::prefix('panel')->group(function() {
     Route::put('/update-writer/{writer}', 'DashboardController@update_writer')->name('writer.update');
 
     Route::delete('/delete-writer/{writer}', 'DashboardController@delete_writer')->name('writer.delete');
+
+    Route::get('/find-user-trusted-books', 'DashboardController@find_user_trusted_books')->name('find.user.trusted.books');
 });
 
 Route::prefix('users')->group(function() {
