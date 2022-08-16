@@ -7,6 +7,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     داشبورد
                 </a>
+                <a class="nav-link" href="{{ route('user.penalties') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-ban"></i></div>
+                    جریمه ها
+                </a>
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
                     <div class="sb-nav-link-icon"><i class="fa fa-sign-out"></i></div>
                     خروج
