@@ -15,3 +15,4 @@ yarn-error.log
 /public/images/trash_images/*.*
 /public/images/writers_images/*.*
 /public/uploads/writers_images/*.*
+/public/images/users_images/*.*
