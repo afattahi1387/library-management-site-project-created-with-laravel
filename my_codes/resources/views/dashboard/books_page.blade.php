@@ -37,7 +37,7 @@
                                         <td>
                                             {{ $book->publisher->publisher_name }}
                                             <br>
-                                            <span style="color: red;">()</span>
+                                            <span style="color: red;">({{ $book->writer->name }})</span>
                                         </td>
                                         <td>
                                             <div class="d-flex">
