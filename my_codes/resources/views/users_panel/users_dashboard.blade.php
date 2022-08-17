@@ -45,7 +45,10 @@
                                         </td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('single.book', ['book' => $book->book_id]) }}" class="btn btn-primary" style="margin-right: 2px;" target="_blank">مشاهده کتاب</a>
+                                                <a href="{{ route('single.book', ['book' => $book->book_id]) }}" class="btn btn-primary" style="margin-right: 3px;" target="_blank">مشاهده کتاب</a>
+                                                @if($book->book->check_trust_status(auth()->user()->id) != 'extended' && $book->book->check_trust_status(auth()->user()->id) != 'trusted')
+                                                    <a href="{{ route('trust.extended', ['book' => $book->book_id, 'user' => auth()->user()->id]) }}" class="btn btn-warning" style="color: white; margin-right: 3px;">تمدید</a>
+                                                @endif
                                                 <form action="{{ route('trust.restore', ['trust' => $book->id]) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="delete">
