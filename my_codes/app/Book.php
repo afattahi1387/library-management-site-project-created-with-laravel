@@ -24,8 +24,7 @@ class Book extends Model
         return $this->belongsTo(Writer::class);
     }
 
-    public function check_status() {
-        $user_id = auth()->user()->id;
+    public function check_trust_status($user_id) {
         $trust = Trust::where('user_id', $user_id)->where('book_id', $this->id)->get();
         if((time() - $trust[0]->trusted_at) < (3600 * 24 * 14)) {
             return 'trusted';
@@ -36,6 +35,11 @@ class Book extends Model
         } else {
             return 'dont_extended';
         }
+    }
+
+    public function check_status() {
+        $user_id = auth()->user()->id;
+        return self::check_trust_status($user_id);
     }
 
     public function trusted() {
