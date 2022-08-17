@@ -44,11 +44,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{ route('trust.restore', ['trust' => $book->id]) }}" method="POST">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" name="_method" value="delete">
-                                                <button class="btn btn-danger" onclick="if(confirm('آیا از لغو امانت این امانت مطمئـن هستید؟')){return true;}else{return false;}">لغو امانت</button>
-                                            </form>
+                                            <div class="d-flex">
+                                                @if($book->book->check_trust_status($user->id) != 'extended' && $book->book->check_trust_status($user->id) != 'trusted')
+                                                    <a href="{{ route('trust.extended', ['book' => $book->book_id, 'user' => $user->id]) }}" style="color: white; margin-right: 2px;" class="btn btn-warning">تمدید</a>
+                                                @endif
+                                                <form action="{{ route('trust.restore', ['trust' => $book->id]) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    <button class="btn btn-danger" onclick="if(confirm('آیا از لغو امانت این امانت مطمئـن هستید؟')){return true;}else{return false;}">لغو امانت</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
