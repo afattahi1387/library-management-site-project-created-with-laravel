@@ -60,6 +60,7 @@ class UsersDashboardController extends Controller
         $book->update([
             'trusted' => $book_trusted - 1
         ]);
+        $trust_user = $trust->user->id;
         $trust->delete();
         if($penaltyPrice > 0) {
             Penalty::create([
@@ -69,7 +70,11 @@ class UsersDashboardController extends Controller
             ]);
         }
 
-        return redirect()->route('users.dashboard');
+        if(auth()->user()->type == 'admin') {
+            return redirect()->route('get.user.trusted.books', ['user' => $trust_user]);
+        } else {
+            return redirect()->route('users.dashboard');
+        }
     }
 
     public function penalties() {
