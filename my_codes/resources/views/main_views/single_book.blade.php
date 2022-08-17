@@ -36,7 +36,7 @@
                                         <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
                                         <span class="text-danger">شما قبلا این کتاب را به امانت گرفته اید</span>
                                     @else
-                                        <a href="{{ route('trust.extended', ['book' => $book->id]) }}" class="btn btn-warning" style="color: white;">تمدید</a>
+                                        <a href="{{ route('trust.extended', ['book' => $book->id, 'user' => auth()->user()->id]) }}" class="btn btn-warning" style="color: white;">تمدید</a>
                                     @endif
                                 @else
                                     @if(($book->quantity - $book->trusted) == 0)
