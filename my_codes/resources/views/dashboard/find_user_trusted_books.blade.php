@@ -42,7 +42,7 @@
                                             <td>
                                                 <img src="/images/users_images/@if(empty($result->image))undefined_user.png @else{{ $result->image }} @endif" style="width: 150px; height: 50px; border-radius: 5px;" alt="تصویری به نمایش در نیامد.">
                                             </td>
-                                            <td><a href="#" style="text-decoration: none;">{{ $result->name }}</a></td>
+                                            <td><a href="{{ route('get.user.trusted.books', ['user' => $result->id]) }}" style="text-decoration: none;">{{ $result->name }}</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

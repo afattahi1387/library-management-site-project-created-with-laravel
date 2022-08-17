@@ -18,6 +18,7 @@ use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
 use App\Http\Requests\UploadWriterImageRequest;
+use App\Trust;
 
 class DashboardController extends Controller
 {
@@ -306,5 +307,10 @@ class DashboardController extends Controller
         }
 
         return view('dashboard.find_user_trusted_books');
+    }
+
+    public function get_user_trusted_books(User $user) {
+        $books = Trust::where('user_id', $user->id)->get();
+        return view('dashboard.get_user_trusted_books', ['user' => $user, 'books' => $books]);
     }
 }

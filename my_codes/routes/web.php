@@ -91,6 +91,8 @@ Route::prefix('panel')->group(function() {
     Route::delete('/delete-writer/{writer}', 'DashboardController@delete_writer')->name('writer.delete');
 
     Route::get('/find-user-trusted-books', 'DashboardController@find_user_trusted_books')->name('find.user.trusted.books');
+
+    Route::get('/get-user-trusted-books/{user}', 'DashboardController@get_user_trusted_books')->name('get.user.trusted.books');
 });
 
 Route::prefix('users')->group(function() {
