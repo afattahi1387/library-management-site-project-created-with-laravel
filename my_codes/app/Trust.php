@@ -12,6 +12,10 @@ class Trust extends Model
         return $this->belongsTo(Book::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     function status() {
         $time1 = 3600 * 24 * 14;
         $time2 = floor(time() - $this->trusted_at - $time1);
