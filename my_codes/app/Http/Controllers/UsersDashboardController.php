@@ -33,8 +33,8 @@ class UsersDashboardController extends Controller
         return redirect()->route('users.dashboard');
     }
 
-    public function extended($book) {
-        $trust = Trust::where('book_id', $book)->where('user_id', auth()->user()->id)->get()[0];
+    public function extended($book, $user) {
+        $trust = Trust::where('book_id', $book)->where('user_id', $user)->get()[0];
         if((time() - $trust->trusted_at) < (3600 * 24 * 14) || $trust->extended) {
             abort(404);
         }
@@ -44,7 +44,11 @@ class UsersDashboardController extends Controller
             'trusted_at' => time()
         ]);
 
-        return redirect()->route('users.dashboard');
+        if(auth()->user()->type == 'admin') {
+            return redirect()->route('get.user.trusted.books', ['user' => $user]);
+        } else {
+            return redirect()->route('users.dashboard');
+        }
     }
 
     public function restore(Trust $trust) {
