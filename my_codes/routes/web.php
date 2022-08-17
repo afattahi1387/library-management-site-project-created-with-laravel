@@ -100,7 +100,7 @@ Route::prefix('users')->group(function() {
 
     Route::get('/trust/{book}', 'UsersDashboardController@trust')->name('book.trust');
 
-    Route::get('/extended/{book}', 'UsersDashboardController@extended')->name('trust.extended');
+    Route::get('/extended/{book}/{user}', 'UsersDashboardController@extended')->name('trust.extended');
 
     Route::delete('/restore/{trust}', 'UsersDashboardController@restore')->name('trust.restore');
 
