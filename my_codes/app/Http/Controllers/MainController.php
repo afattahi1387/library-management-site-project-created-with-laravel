@@ -64,7 +64,7 @@ class MainController extends Controller
             'book_id' => $book
         ]);
 
-        return redirect()->route('single.book', ['book' => $book]);
+        return redirect()->to(env('APP_URL') . '/single-book/' . $book . '#comments');
     }
 
     public function login_page() {
