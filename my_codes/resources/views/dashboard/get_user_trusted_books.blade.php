@@ -15,6 +15,7 @@
                         کتاب های امانت گرفته شده برای: {{ $user->name }}
                     </div>
                     <div class="card-body">
+                        <b>مجموع جریمه: </b><span>{{ $sum_of_penalties }}</span><br><br>
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
