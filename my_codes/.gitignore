@@ -16,3 +16,4 @@ yarn-error.log
 /public/images/writers_images/*.*
 /public/uploads/writers_images/*.*
 /public/images/users_images/*.*
+/public/uploads/users_images/*.*
