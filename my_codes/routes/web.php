@@ -21,6 +21,8 @@ Route::get('/search', 'MainController@search')->name('search');
 
 Route::get('/single-writer/{writer}', 'MainController@single_writer')->name('single.writer');
 
+Route::post('/add-comment/{book}', 'MainController@add_comment')->name('comment.add');
+
 Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login');

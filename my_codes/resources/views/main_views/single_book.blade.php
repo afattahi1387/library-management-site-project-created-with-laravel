@@ -57,7 +57,17 @@
                         <div class="card bg-light">
                             <div class="card-body">
                                 <!-- Comment form-->
-                                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                                <h4>افزودن نظر</h4><br>
+                                <form class="mb-4" action="{{ route('comment.add', ['book' => $book->id]) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    @if(Auth::check())
+                                        <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
+                                    @else
+                                        <input type="text" name="user_name" placeholder="نام" class="form-control"><br>
+                                    @endif
+                                    <textarea class="form-control" name="comment" rows="4" id="comment" placeholder="نظر شما"></textarea><br>
+                                    <input type="submit" value="افزودن" class="btn btn-success">
+                                </form>
                                 <!-- Comment with nested comments-->
                                 <div class="d-flex mb-4">
                                     <!-- Parent comment-->
@@ -98,4 +108,27 @@
                 @include('includes.main_pages_sidebar')
             </div>
         </div>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+        <script>
+          tinymce.init({
+            selector: '#comment',
+            'directionality': 'rtl',
+            plugins: [
+    
+              'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+    
+              'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+    
+              'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    
+            ],
+            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+    
+              'alignleft aligncenter alignright alignjustify | ' +
+    
+              'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+          });
+        </script>
 @endsection

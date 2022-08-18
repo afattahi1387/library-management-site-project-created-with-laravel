@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Category;
 use App\Writer;
+use App\Comment;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddCommentRequest;
 
 class MainController extends Controller
 {
@@ -39,6 +41,30 @@ class MainController extends Controller
 
     public function single_writer(Writer $writer) {
         return view('main_views.writer_information', ['writer' => $writer]);
+    }
+
+    public function add_comment(AddCommentRequest $request, $book) {
+        if(auth()->check()) {
+            if(empty(auth()->user()->image)) {
+                $user_profile = null;
+            } else {
+                $user_profile = auth()->user()->image;
+            }
+            $user_id = auth()->user()->id;
+        } else {
+            $user_profile = null;
+            $user_id = 0;
+        }
+
+        Comment::create([
+            'user_profile' => $user_profile,
+            'user_name' => $request->user_name,
+            'comment' => $request->comment,
+            'user_id' => $user_id,
+            'book_id' => $book
+        ]);
+
+        return redirect()->route('single.book', ['book' => $book]);
     }
 
     public function login_page() {
