@@ -23,7 +23,8 @@ return [
         'password' => 'رمز عبور',
         'writer_description' => 'رزومه نویسنده',
         'user_name' => 'نام',
-        'comment' => 'نظر'
+        'comment' => 'نظر',
+        'profile_image' => 'تصویر پروفایل'
     ],
 
 ];

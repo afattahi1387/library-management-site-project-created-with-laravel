@@ -108,3 +108,7 @@ Route::prefix('users')->group(function() {
 
     Route::get('/penalties', 'UsersDashboardController@penalties')->name('user.penalties');
 });
+
+Route::get('/edit-profile-image', 'CommonPagesController@edit_profile_image_form')->name('edit.profile.image.form');
+
+Route::put('/update-profile-image', 'CommonPagesController@update_profile_image')->name('update.profile.image');
