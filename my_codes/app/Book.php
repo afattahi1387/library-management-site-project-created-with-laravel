@@ -24,6 +24,10 @@ class Book extends Model
         return $this->belongsTo(Writer::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function check_trust_status($user_id) {
         $trust = Trust::where('user_id', $user_id)->where('book_id', $this->id)->get();
         if((time() - $trust[0]->trusted_at) < (3600 * 24 * 14)) {
