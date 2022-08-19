@@ -16,7 +16,7 @@ for Initial Setup, Performance Step by Step:
 
 ### install APACHE, PHP, MySQL and Composer
 
-in step 1 install APACHE, PHP, MySQL and Composer. for install APACHE, PHP and MySQL, You Can install XAMPP or Wampserver or install seperately.
+in step 1, install APACHE, PHP, MySQL and Composer. for install APACHE, PHP and MySQL, You Can install XAMPP or Wampserver or install seperately.
 
 ### Clone this Project
 
@@ -32,7 +32,7 @@ and for Clone This Project from GitLab, Enter This Command:
 
 ### Install vendor Folder
 
-for Install vendor Folder, First Open Terminal Or Command Prompt in my_codes folder, Then Install This Command:
+for Install vendor Folder, First Open Terminal Or Command Prompt in my_codes folder, Then Enter This Command:
 
     composer install
 
