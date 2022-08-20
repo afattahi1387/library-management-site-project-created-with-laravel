@@ -237,7 +237,7 @@ class DashboardController extends Controller
             return redirect()->route('upload.writer.image', ['writer' => $new_writer->id]);
         }
 
-        dd('salam');
+        return redirect()->route('single.writer', ['writer' => $new_writer->id]);
     }
 
     public function upload_writer_image(Writer $writer) {
@@ -296,7 +296,10 @@ class DashboardController extends Controller
 
     public function delete_writer(Writer $writer) {
         $writerImage = $writer->image;
-        unlink('images/writers_images/' . $writerImage);
+        if(!empty($writerImage)) {
+            unlink('images/writers_images/' . $writerImage);
+        }
+        
         $writer->delete();
         return redirect()->route('admin.panel.writers');
     }
