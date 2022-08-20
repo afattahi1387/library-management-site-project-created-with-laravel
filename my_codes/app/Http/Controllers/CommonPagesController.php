@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use App\Http\Requests\EditProfileInformationRequest;
+use App\Http\Requests\EditProfileImageRequest;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\EditProfileImageRequest;
 
 class CommonPagesController extends Controller
 {
@@ -48,5 +50,48 @@ class CommonPagesController extends Controller
         auth()->logout();
         auth()->loginUsingId($user->id);
         return redirect()->route('redirect.to.dashboard');
+    }
+
+    public function edit_profile_information() {
+        return view('common_pages.edit_profile_information');
+    }
+
+    public function update_profile_information(EditProfileInformationRequest $request) {
+        $user = User::find(auth()->user()->id);
+        dd(bcrypt($request->password), $user->password);
+        if($request->name == $user->name && $request->email == $user->email && $request->password == $user->password) {
+            dd('salam');
+            return redirect()->route('redirect.to.dashboard');
+        }
+        dd('hello');
+        if($request->name != $user->name && $request->email == $user->email && $request->passowrd == $user->password) {
+            $user->update([
+                'name' => $request->name
+            ]);
+
+            auth()->logout();
+            auth()->loginUsingId($user->id);
+            return redirect()->route('redirect.to.dashboard');
+        }
+
+        $user_exists = User::where('email', $request->email)->orWhere('password', $request->password)->exists();
+        if($user_exists) {
+            abort(500);
+        } else {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+        }
+
+        auth()->logout();
+        auth()->loginUsingId($user->id);
+        return redirect()->route('redirect.to.dashboard');
+    }
+
+    public function show_comments() {
+        $comments = Comment::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
+        return view('common_pages.show_comments', ['comments' => $comments]);
     }
 }
