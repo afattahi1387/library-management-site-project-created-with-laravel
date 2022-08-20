@@ -37,4 +37,16 @@ class CommonPagesController extends Controller
 
         return redirect()->route('redirect.to.dashboard');
     }
+
+    public function delete_profile_image() {
+        $user = User::find(auth()->user()->id);
+        unlink('images/users_images/' . $user->image);
+        $user->update([
+            'image' => null
+        ]);
+
+        auth()->logout();
+        auth()->loginUsingId($user->id);
+        return redirect()->route('redirect.to.dashboard');
+    }
 }
