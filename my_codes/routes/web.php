@@ -114,3 +114,7 @@ Route::get('/edit-profile-image', 'CommonPagesController@edit_profile_image_form
 Route::put('/update-profile-image', 'CommonPagesController@update_profile_image')->name('update.profile.image');
 
 Route::get('/delete-profile-image', 'CommonPagesController@delete_profile_image')->name('delete.profile.image');
+
+Route::get('/edit-profile-information', 'CommonPagesController@edit_profile_information')->name('edit.profile.information');
+
+Route::put('/update-profile-information', 'CommonPagesController@update_profile_information')->name('update.profile.information');

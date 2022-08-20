@@ -5,8 +5,10 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li class="dropdown-header">{{ auth()->user()->name }}</li>
                 <li><a class="dropdown-item" href="{{ route('edit.profile.image.form') }}">تغییر تصویر پروفایل</a></li>
-                <li><a class="dropdown-item" href="{{ route('delete.profile.image') }}">حذف تصویر پروفایل</a></li>
-                <li><a class="dropdown-item" href="#!">ویرایش اطلاعات کاربری</a></li>
+                @if(!empty(auth()->user()->image))
+                    <li><a class="dropdown-item" href="{{ route('delete.profile.image') }}">حذف تصویر پروفایل</a></li>
+                @endif
+                <li><a class="dropdown-item" href="{{ route('edit.profile.information') }}">ویرایش اطلاعات کاربری</a></li>
             </ul>
         </li>
     </ul>
