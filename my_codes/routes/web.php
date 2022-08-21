@@ -120,3 +120,5 @@ Route::get('/edit-profile-information', 'CommonPagesController@edit_profile_info
 Route::put('/update-profile-information', 'CommonPagesController@update_profile_information')->name('update.profile.information');
 
 Route::get('/show-comments', 'CommonPagesController@show_comments')->name('show.comments');
+
+Route::delete('/delete-comment/{comment}', 'CommonPagesController@delete_comment')->name('delete.comment');

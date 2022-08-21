@@ -9,6 +9,7 @@
                     <li><a class="dropdown-item" href="{{ route('delete.profile.image') }}">حذف تصویر پروفایل</a></li>
                 @endif
                 <li><a class="dropdown-item" href="{{ route('edit.profile.information') }}">ویرایش اطلاعات کاربری</a></li>
+                <li><a class="dropdown-item" href="{{ route('show.comments') }}">نظرات داده شده</a></li>
             </ul>
         </li>
     </ul>

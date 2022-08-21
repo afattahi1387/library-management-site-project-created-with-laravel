@@ -92,6 +92,15 @@ class CommonPagesController extends Controller
 
     public function show_comments() {
         $comments = Comment::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
-        return view('common_pages.show_comments', ['comments' => $comments]);
+        if(auth()->user()->type == 'admin') {
+            return view('common_pages.show_comments_for_admin', ['comments' => $comments]);
+        } else {
+            return view('common_pages.show_comments_for_user', ['comments' => $comments]);
+        }
+    }
+
+    public function delete_comment(Comment $comment) {
+        $comment->delete();
+        return redirect()->route('show.comments');
     }
 }

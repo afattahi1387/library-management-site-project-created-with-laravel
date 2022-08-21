@@ -1,4 +1,4 @@
-@extends('includes.dashboard_html_structure')
+@extends('includes.users_dashboard_html_structure')
 
 @section('title', 'نظرات داده شده توسط شما')
 
@@ -27,12 +27,12 @@
                                 @foreach ($comments as $comment)
                                     <tr>
                                         <td>@php echo ++$commentsCounter; @endphp</td>
-                                        <td><a href="{{ route('single.book', ['book' => $comment->book_id]) }}" style="text-decoration: none;">{{ $comment->book->name }}</a></td>
+                                        <td><a href="{{ route('single.book', ['book' => $comment->book_id]) }}" target="_blank" style="text-decoration: none;">{{ $comment->book->name }}</a></td>
                                         <td>{!! $comment->comment !!}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="#" class="btn btn-warning" style="color: white; margin-right: 2px;">ویرایش</a>
-                                                <form action="" method="POST">
+                                                <form action="{{ route('delete.comment', ['comment' => $comment->id]) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="delete">
                                                     <button class="btn btn-danger" onclick="if(confirm('آیا از حذف این نظر مطمئـن هستید؟')){return true;}else{return false;}">حذف</button>
