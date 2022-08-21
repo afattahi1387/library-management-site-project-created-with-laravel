@@ -10,7 +10,7 @@
                 <h1 class="mt-4">ویرایش کتاب</h1><br>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-edit"></i>
                         ویرایش کتاب: {{ $book->name }}
                     </div>
                     <div class="card-body" style="direction: rtl;">
