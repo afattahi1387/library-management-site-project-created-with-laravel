@@ -31,7 +31,7 @@
                                         <td>{!! $comment->comment !!}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="#" class="btn btn-warning" style="color: white; margin-right: 2px;">ویرایش</a>
+                                                <a href="{{ route('edit.comment', ['comment' => $comment->id]) }}" class="btn btn-warning" style="color: white; margin-right: 2px;">ویرایش</a>
                                                 <form action="{{ route('delete.comment', ['comment' => $comment->id]) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="delete">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Http\Requests\EditProfileInformationRequest;
 use App\Http\Requests\EditProfileImageRequest;
+use App\Http\Requests\EditCommentRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -101,6 +102,24 @@ class CommonPagesController extends Controller
 
     public function delete_comment(Comment $comment) {
         $comment->delete();
+        return redirect()->route('show.comments');
+    }
+
+    public function edit_comment(Comment $comment) {
+        if(auth()->user()->type == 'admin') {
+            return view('common_pages.edit_comment_for_admin', ['comment' => $comment]);
+        } else {
+            return view('common_pages.edit_comment_for_user', ['comment' => $comment]);
+        }
+    }
+
+    public function update_comment(EditCommentRequest $request, Comment $comment) {
+        $comment->update([
+            'user_profile' => auth()->user()->image,
+            'user_name' => auth()->user()->name,
+            'comment' => $request->comment,
+        ]);
+
         return redirect()->route('show.comments');
     }
 }
