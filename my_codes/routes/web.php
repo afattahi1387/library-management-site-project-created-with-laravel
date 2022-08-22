@@ -23,6 +23,8 @@ Route::get('/single-writer/{writer}', 'MainController@single_writer')->name('sin
 
 Route::post('/add-comment/{book}', 'MainController@add_comment')->name('comment.add');
 
+Route::get('/add-vote/{book_id}/{vote}', 'MainController@add_vote')->name('add.vote');
+
 Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login');

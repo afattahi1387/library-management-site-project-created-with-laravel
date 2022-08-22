@@ -6,6 +6,7 @@ use App\Book;
 use App\Writer;
 use App\Comment;
 use App\Category;
+use App\Vote;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddCommentRequest;
 
@@ -65,6 +66,15 @@ class MainController extends Controller
         ]);
 
         return redirect()->to(env('APP_URL') . '/single-book/' . $book . '#comments');
+    }
+
+    public function add_vote($book_id, $vote) {
+        Vote::create([
+            'book_id' => $book_id,
+            'vote' => $vote
+        ]);
+
+        return redirect()->to(env('APP_URL') . '/single-book/' . $book_id . '#add_vote');
     }
 
     public function login_page() {
