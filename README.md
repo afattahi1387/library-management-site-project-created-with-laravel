@@ -16,7 +16,7 @@ For Initial Setup, Performance Step by Step:
 
 ### install APACHE, PHP, MySQL and Composer
 
-In step 1, install APACHE, PHP, MySQL and Composer. for install APACHE, PHP and MySQL, You Can install XAMPP or Wampserver or install seperately.
+In step 1, install APACHE, PHP, MySQL and Composer. for install APACHE, PHP and MySQL, You Can install **XAMPP** or **Wampserver** or install seperately.
 
 ### Clone this Project
 
