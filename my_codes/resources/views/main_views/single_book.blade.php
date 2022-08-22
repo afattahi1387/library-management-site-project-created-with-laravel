@@ -51,6 +51,16 @@
                             <a href="#" class="btn btn-primary disabled" role="button">امانت گرفتن</a>
                             <span class="text-danger">ابتدا باید وارد شوید</span>
                         @endif
+                        <br><br>
+                        <h4 id="add_vote">رای دادن</h4><br>
+                        <a href="{{ route('add.vote', ['book_id' => $book->id, 'vote' => 'great']) }}" class="btn btn-success">عالی بود</a>
+                        <a href="{{ route('add.vote', ['book_id' => $book->id, 'vote' => 'not_bad']) }}" class="btn btn-warning" style="color: white;">بد نبود</a>
+                        <a href="{{ route('add.vote', ['book_id' => $book->id, 'vote' => 'bad']) }}" class="btn btn-danger">اصلا خوب نبود</a>
+                        <br><br>
+                        <h4>رای های ثبت شده</h4>
+                        <h5>رای های «عالی بود»: {{ $book->votes('great') }}</h5>
+                        <h5>رای های «بد نبود»: {{ $book->votes('not_bad') }}</h5>
+                        <h5>رای های «اصلا خوب نبود»: {{ $book->votes('bad') }}</h5>
                     </article><br>
                     <!-- Comments section-->
                     <section class="mb-5">
@@ -93,18 +103,18 @@
             selector: '#comment',
             'directionality': 'rtl',
             plugins: [
-    
+
               'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-    
+
               'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-    
+
               'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-    
+
             ],
             toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-    
+
               'alignleft aligncenter alignright alignjustify | ' +
-    
+
               'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
           });
         </script>
