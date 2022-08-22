@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Trust;
+use App\Vote;
 
 class Book extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = ['name', 'quantity', 'trusted', 'image', 'short_description', 'long_description', 'category_id', 'publisher_id', 'writer_id'];
 
     public function category() {
@@ -26,6 +27,10 @@ class Book extends Model
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function votes($vote) {
+        return Vote::where('book_id', $this->id)->where('vote', $vote)->count();
     }
 
     public function check_trust_status($user_id) {
