@@ -78,16 +78,20 @@
                                     <textarea class="form-control" name="comment" rows="4" id="comment" placeholder="نظر شما"></textarea><br>
                                     <input type="submit" value="افزودن" class="btn btn-success">
                                 </form>
-                                <h4 id="comments">نظرات داده شده</h4><br>
-                                @foreach($book->comments as $comment)
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" style="width: 60px; height: 60px;" src="/images/users_images/@if(empty($comment->user_profile))undefined_user.png @else{{ $comment->user_profile }} @endif" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">{{ $comment->user_name }}</div>
-                                            {!! $comment->comment !!}
-                                        </div>
-                                    </div><br>
-                                @endforeach
+                                @if($book->comments->count() < 1)
+                                    تاکنون نظری برای این کتاب ثبت نشده است.
+                                @else
+                                    <h4 id="comments">نظرات داده شده</h4><br>
+                                    @foreach($book->comments as $comment)
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" style="width: 60px; height: 60px;" src="/images/users_images/@if(empty($comment->user_profile))undefined_user.png @else{{ $comment->user_profile }} @endif" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">{{ $comment->user_name }}</div>
+                                                {!! $comment->comment !!}
+                                            </div>
+                                        </div><br>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </section>
