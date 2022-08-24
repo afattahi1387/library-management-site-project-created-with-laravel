@@ -13,7 +13,7 @@
                                 <div class="card-body">
                                     <div class="small mb-3 text-muted" style="direction: rtl;">لطفا ایمیل خود را وارد کنید و روی دکمه تایید کلیک کنید تا ایمیل بازیابی برای شما ارسال شود.</div>
                                     @if (session('status'))
-                                        <div class="alert alert-success">ایمیل با موفقیت ارسال شد.</div>
+                                        <div class="alert alert-success">ایمیل با موفقیت ارسال شد</div>
                                     @endif
                                     <form action="{{ route('password.email') }}" method="POST">
                                         {{ csrf_field() }}
