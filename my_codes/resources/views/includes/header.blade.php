@@ -14,6 +14,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ورود</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register.page') }}">ثبت نام</a></li>
                 @endif
+                <li class="nav-item"><a class="nav-link" href="{{ route('contact.us') }}">ارتباط با ما</a></li>
             </ul>
         </div>
     </div>
