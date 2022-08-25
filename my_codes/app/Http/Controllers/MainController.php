@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Vote;
 use App\Writer;
 use App\Comment;
+use App\Message;
 use App\Category;
-use App\Vote;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddCommentRequest;
+use App\Http\Requests\AddMessageRequest;
 
 class MainController extends Controller
 {
@@ -39,6 +41,21 @@ class MainController extends Controller
         $categories = Category::all();
         return view('main_views.search', ['books' => $books, 'categories' => $categories]);
     }
+
+    public function contact_us() {
+        return view('main_views.contact-us');
+    }
+
+    public function add_message_in_contact_us(AddMessageRequest $request) {
+        Message::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message
+        ]);
+
+        echo "<script>alert('پیام شما با موفقیت ثبت شد.');</script>";
+        echo "<script>window.location.href='" . route('home') . "';</script>";
+    } 
 
     public function single_writer(Writer $writer) {
         return view('main_views.writer_information', ['writer' => $writer]);

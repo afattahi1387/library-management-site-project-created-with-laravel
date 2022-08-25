@@ -19,6 +19,10 @@ Route::get('/category/{category}', 'MainController@books_for_category')->name('c
 
 Route::get('/search', 'MainController@search')->name('search');
 
+Route::get('/contact-us', 'MainController@contact_us')->name('contact.us');
+
+Route::post('/add-message-in-contact-us', 'MainController@add_message_in_contact_us')->name('add.message.in.contact.us');
+
 Route::get('/single-writer/{writer}', 'MainController@single_writer')->name('single.writer');
 
 Route::post('/add-comment/{book}', 'MainController@add_comment')->name('comment.add');

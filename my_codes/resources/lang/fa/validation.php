@@ -24,7 +24,8 @@ return [
         'writer_description' => 'رزومه نویسنده',
         'user_name' => 'نام',
         'comment' => 'نظر',
-        'profile_image' => 'تصویر پروفایل'
+        'profile_image' => 'تصویر پروفایل',
+        'message' => 'پیام'
     ],
 
 ];
