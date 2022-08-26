@@ -9,7 +9,7 @@
                 <h1 class="mt-4">پیام های دریافت شده</h1><br>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
+                        <i class="fas fa-message"></i>
                         پیام های دریافت شده
                     </div>
                     <div class="card-body">
@@ -32,7 +32,7 @@
                                         <td>{{ $message->email }}</td>
                                         <td>{!! $message->message !!}</td>
                                         <td>
-                                            <a href="#" class="btn btn-success">مشاهده شد</a>
+                                            <a href="{{ route('set.viewed.for.message', ['message' => $message->id]) }}" class="btn btn-success">مشاهده شد</a>
                                             <a href="#" class="btn btn-primary">پاسخ دادن</a>
                                         </td>
                                     </tr>

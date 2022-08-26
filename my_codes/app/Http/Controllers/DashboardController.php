@@ -329,4 +329,12 @@ class DashboardController extends Controller
         $messages = Message::where('viewed', 0)->orderBy('id', 'DESC')->get();
         return view('dashboard.messages', ['messages' => $messages]);
     }
+
+    public function set_viewed_for_message(Message $message) {
+        $message->update([
+            'viewed' => 1
+        ]);
+
+        return redirect()->route('admin.panel.messages');
+    }
 }

@@ -103,6 +103,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/get-user-trusted-books/{user}', 'DashboardController@get_user_trusted_books')->name('get.user.trusted.books');
 
     Route::get('/messages', 'DashboardController@messages')->name('admin.panel.messages');
+
+    Route::get('/set-viewed-for-message/{message}', 'DashboardController@set_viewed_for_message')->name('set.viewed.for.message');
 });
 
 Route::prefix('users')->group(function() {
