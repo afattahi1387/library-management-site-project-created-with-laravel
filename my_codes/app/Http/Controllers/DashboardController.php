@@ -18,6 +18,7 @@ use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
 use App\Http\Requests\UploadWriterImageRequest;
+use App\Message;
 use App\Penalty;
 use App\Trust;
 
@@ -322,5 +323,10 @@ class DashboardController extends Controller
         }
 
         return view('dashboard.get_user_trusted_books', ['user' => $user, 'books' => $books, 'sum_of_penalties' => $sum_of_penalties]);
+    }
+
+    public function messages() {
+        $messages = Message::where('viewed', 0)->orderBy('id', 'DESC')->get();
+        return view('dashboard.messages', ['messages' => $messages]);
     }
 }

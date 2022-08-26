@@ -101,6 +101,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/find-user-trusted-books', 'DashboardController@find_user_trusted_books')->name('find.user.trusted.books');
 
     Route::get('/get-user-trusted-books/{user}', 'DashboardController@get_user_trusted_books')->name('get.user.trusted.books');
+
+    Route::get('/messages', 'DashboardController@messages')->name('admin.panel.messages');
 });
 
 Route::prefix('users')->group(function() {
