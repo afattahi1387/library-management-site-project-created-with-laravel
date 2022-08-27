@@ -16,7 +16,7 @@ class UsersDashboardController extends Controller
     }
 
     public function dashboard() {
-        $trusted_books = Trust::where('user_id', auth()->user()->id)->get();
+        $trusted_books = Trust::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
         return view('users_panel.users_dashboard', ['trusted_books' => $trusted_books]);
     }
 
