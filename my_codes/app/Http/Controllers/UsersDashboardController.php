@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Notifications\TrustBook;
 use App\Penalty;
 use App\Trust;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class UsersDashboardController extends Controller
 {
@@ -19,7 +21,7 @@ class UsersDashboardController extends Controller
     }
 
     public function trust(Book $book) {
-        Trust::create([
+        $trust = Trust::create([
             'book_id' => $book->id,
             'user_id' => auth()->user()->id,
             'trusted_at' => time()
@@ -29,6 +31,8 @@ class UsersDashboardController extends Controller
         $book->update([
             'trusted' => $book_trusted + 1
         ]);
+
+        Notification::send(auth()->user(), new TrustBook($trust));
 
         return redirect()->route('users.dashboard');
     }
