@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\User;
+use App\Trust;
 use App\Writer;
+use App\Message;
+use App\Penalty;
 use App\Category;
 use App\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\AddImageRequest;
 use App\Http\Requests\EditBookRequest;
@@ -17,10 +21,9 @@ use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
+use App\Http\Requests\AnswerToMessageRequest;
 use App\Http\Requests\UploadWriterImageRequest;
-use App\Message;
-use App\Penalty;
-use App\Trust;
+use App\Mail\AnswerToMessage as MailAnswerToMessage;
 
 class DashboardController extends Controller
 {
@@ -333,6 +336,20 @@ class DashboardController extends Controller
     public function set_viewed_for_message(Message $message) {
         $message->update([
             'viewed' => 1
+        ]);
+
+        return redirect()->route('admin.panel.messages');
+    }
+
+    public function answer_to_message(Message $message) {
+        return view('dashboard.answer_to_message', ['message' => $message]);
+    }
+
+    public function set_answer_for_message(Message $message, AnswerToMessageRequest $request) {
+        Mail::send(new MailAnswerToMessage($message->email, $message, $request->answer));
+        $message->update([
+            'viewed' => 1,
+            'answer' => $request->answer
         ]);
 
         return redirect()->route('admin.panel.messages');

@@ -105,6 +105,10 @@ Route::prefix('panel')->group(function() {
     Route::get('/messages', 'DashboardController@messages')->name('admin.panel.messages');
 
     Route::get('/set-viewed-for-message/{message}', 'DashboardController@set_viewed_for_message')->name('set.viewed.for.message');
+
+    Route::get('/answer-to-message/{message}', 'DashboardController@answer_to_message')->name('answer.to.message');
+
+    Route::post('/set-answer-for-message/{message}', 'DashboardController@set_answer_for_message')->name('set.answer.for.message');
 });
 
 Route::prefix('users')->group(function() {
