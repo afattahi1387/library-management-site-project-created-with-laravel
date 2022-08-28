@@ -25,6 +25,8 @@ Route::post('/add-message-in-contact-us', 'MainController@add_message_in_contact
 
 Route::get('/single-writer/{writer}', 'MainController@single_writer')->name('single.writer');
 
+Route::get('/follow-writer/{writer}', 'MainController@follow_writer')->name('follow.writer');
+
 Route::post('/add-comment/{book}', 'MainController@add_comment')->name('comment.add');
 
 Route::get('/add-vote/{book_id}/{vote}', 'MainController@add_vote')->name('add.vote');

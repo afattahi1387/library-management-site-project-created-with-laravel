@@ -8,6 +8,7 @@ use App\Writer;
 use App\Comment;
 use App\Message;
 use App\Category;
+use App\Follower;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddCommentRequest;
 use App\Http\Requests\AddMessageRequest;
@@ -92,6 +93,15 @@ class MainController extends Controller
         ]);
 
         return redirect()->to(env('APP_URL') . '/single-book/' . $book_id . '#add_vote');
+    }
+
+    public function follow_writer(Writer $writer) {
+        Follower::create([
+            'user_id' => auth()->user()->id,
+            'writer_id' => $writer->id
+        ]);
+
+        return redirect()->route('single.writer', ['writer' => $writer->id]);
     }
 
     public function login_page() {
