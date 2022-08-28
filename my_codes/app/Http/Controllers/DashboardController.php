@@ -24,6 +24,8 @@ use App\Http\Requests\EditPublisherRequest;
 use App\Http\Requests\AnswerToMessageRequest;
 use App\Http\Requests\UploadWriterImageRequest;
 use App\Mail\AnswerToMessage as MailAnswerToMessage;
+use App\Notifications\CreateFollowedWriterBook;
+use Illuminate\Support\Facades\Notification;
 
 class DashboardController extends Controller
 {
@@ -124,6 +126,10 @@ class DashboardController extends Controller
         $book->update([
             'image' => $imageNewName
         ]);
+
+        foreach($book->writer->followers as $follower) {
+            Notification::send($follower->user, new CreateFollowedWriterBook($follower->user->name, $book));
+        }
 
         return redirect()->route('single.book', ['book' => $book->id]);
     }
