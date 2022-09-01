@@ -12,6 +12,7 @@ use App\Follower;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddCommentRequest;
 use App\Http\Requests\AddMessageRequest;
+use App\MailNews;
 
 class MainController extends Controller
 {
@@ -102,6 +103,15 @@ class MainController extends Controller
         ]);
 
         return redirect()->route('single.writer', ['writer' => $writer->id]);
+    }
+
+    public function add_to_mail_news(Request $request) {
+        MailNews::create([
+            'email' => $request->user_email
+        ]);
+
+        echo "<script>alert('شما در خبرنامه عضو شدید.');</script>";
+        echo "<script>window.location.href='" . env('APP_URL') . "';</script>";
     }
 
     public function login_page() {

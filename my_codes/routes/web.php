@@ -31,6 +31,8 @@ Route::post('/add-comment/{book}', 'MainController@add_comment')->name('comment.
 
 Route::get('/add-vote/{book_id}/{vote}', 'MainController@add_vote')->name('add.vote');
 
+Route::post('/add-to-mail-news', 'MainController@add_to_mail_news')->name('add.to.mail.news');
+
 Auth::routes();
 
 Route::get('/login', 'MainController@login_page')->name('login');
