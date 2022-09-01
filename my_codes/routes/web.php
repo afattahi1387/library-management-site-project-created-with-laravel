@@ -113,6 +113,10 @@ Route::prefix('panel')->group(function() {
     Route::get('/answer-to-message/{message}', 'DashboardController@answer_to_message')->name('answer.to.message');
 
     Route::post('/set-answer-for-message/{message}', 'DashboardController@set_answer_for_message')->name('set.answer.for.message');
+
+    Route::get('/send-news-page', 'DashboardController@send_news_page')->name('send.news.page');
+
+    Route::post('/send-news-in-mail-news', 'DashboardController@send_news_in_mail_news')->name('send.news.in.mail.news');
 });
 
 Route::prefix('users')->group(function() {

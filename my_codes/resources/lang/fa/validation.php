@@ -26,7 +26,8 @@ return [
         'comment' => 'نظر',
         'profile_image' => 'تصویر پروفایل',
         'message' => 'پیام',
-        'answer' => 'پاسخ'
+        'answer' => 'پاسخ',
+        'news' => 'خبر'
     ],
 
 ];

@@ -22,8 +22,11 @@ use App\Http\Requests\AddPublisherRequest;
 use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\EditPublisherRequest;
 use App\Http\Requests\AnswerToMessageRequest;
+use App\Http\Requests\SendNewsRequest;
 use App\Http\Requests\UploadWriterImageRequest;
 use App\Mail\AnswerToMessage as MailAnswerToMessage;
+use App\Mail\SendNews;
+use App\MailNews;
 use App\Notifications\CreateFollowedWriterBook;
 use Illuminate\Support\Facades\Notification;
 
@@ -359,5 +362,19 @@ class DashboardController extends Controller
         ]);
 
         return redirect()->route('admin.panel.messages');
+    }
+
+    public function send_news_page() {
+        return view('dashboard.send_news_page');
+    }
+
+    public function send_news_in_mail_news(SendNewsRequest $request) {
+        $emails = MailNews::all();
+        foreach($emails as $email) {
+            Mail::send(new SendNews($email->email, $request->news));
+        }
+
+        echo "<script>alert('خبر شما با موفقیت ارسال شد.');</script>";
+        echo "<script>window.location.href='" . route('dashboard') . "';</script>";
     }
 }
