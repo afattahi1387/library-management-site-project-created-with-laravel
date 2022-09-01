@@ -35,6 +35,10 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-handshake"></i></div>
                     کتاب های امانت گرفته شده
                 </a>
+                <a class="nav-link" href="{{ route('send.news.page') }}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-paper-plane"></i></div>
+                    ارسال خبر در خبرنامه
+                </a>
                 <a class="nav-link" href="{{ route('trash') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-trash"></i></div>
                     سطل زباله
