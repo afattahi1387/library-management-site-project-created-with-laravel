@@ -129,4 +129,12 @@ class MainController extends Controller
 
         return view('auth.register');
     }
+
+    public function password_reset_page() {
+        if(auth()->check()) {
+            return redirect()->route('redirect.to.dashboard');
+        }
+
+        return view('auth.passwords.email');
+    }
 }

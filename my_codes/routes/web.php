@@ -39,6 +39,8 @@ Route::get('/login', 'MainController@login_page')->name('login');
 
 Route::get('/register', 'MainController@register_page')->name('register.page');
 
+Route::get('/password/reset', 'MainController@password_reset_page')->name('password.request');
+
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
 Route::get('/redirect-to-dashboard', function() {
