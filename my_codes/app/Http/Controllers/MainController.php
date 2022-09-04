@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AddCommentRequest;
 use App\Http\Requests\AddMessageRequest;
 use App\MailNews;
+use App\Notifications\ReceivedMessage;
+use App\User;
+use Illuminate\Support\Facades\Notification;
 
 class MainController extends Controller
 {
@@ -54,6 +57,11 @@ class MainController extends Controller
             'email' => $request->email,
             'message' => $request->message
         ]);
+
+        $admins = User::where('type', 'admin')->get();
+        foreach($admins as $admin) {
+            Notification::send($admin, new ReceivedMessage($request->name));
+        }
 
         echo "<script>alert('پیام شما با موفقیت ثبت شد.');</script>";
         echo "<script>window.location.href='" . route('home') . "';</script>";
