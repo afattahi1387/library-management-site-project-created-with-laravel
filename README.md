@@ -48,6 +48,10 @@ For Create Tables in Database, You Should Open my_codes folder in Terminal Or Co
 
     php artisan migrate
 
+### Create folders for upload images
+
+For upload images, You should create folders by name `books_images`, `writers_images` and `users_images` in `public/images` and `public/uploads` and create `trash_images` folder in `public/images`.
+
 ### Add an Admin for working with site
 
 Now You Should Add an Admin for working with site. You can First Register a User, Then Log Out and Change this user `type` field to `admin`.
