@@ -7,7 +7,7 @@
                 <h1 class="mt-4">پاسخ به پیام</h1><br>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-reply"></i>
                         پاسخ به پیام
                     </div>
                     <div class="card-body" style="direction: rtl;">
